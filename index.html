@@ -69,6 +69,10 @@
       .coming-soon__panel { position:relative; width:min(900px,100%); height:min(72svh,640px); min-height:420px; overflow:hidden; border:1px solid rgba(220,211,255,.4); border-radius:22px; background:#08080a; box-shadow:0 28px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.19); transform:translateY(15px) scale(.97); transition:transform .34s cubic-bezier(.2,.8,.2,1); }
       .coming-soon.is-open .coming-soon__panel { transform:translateY(0) scale(1); }
       .three-d-paper-frame { display:block; width:100%; height:100%; border:0; background:#08080a; }
+      .coming-soon__context { position:absolute; z-index:2; left:clamp(19px,4vw,42px); top:clamp(19px,3vw,30px); max-width:215px; pointer-events:none; text-transform:uppercase; }
+      .coming-soon__context span { display:block; color:#b8ff3c; font:500 10px/1.3 'DM Mono',monospace; letter-spacing:.14em; }
+      .coming-soon__context strong { display:block; margin-top:8px; color:#f7f5ff; font:500 clamp(17px,2vw,25px)/1.05 'Outfit',sans-serif; letter-spacing:-.05em; }
+      .coming-soon__context p { margin:7px 0 0; color:rgba(235,231,255,.66); font-size:11px; line-height:1.55; }
       .coming-soon__close { position:absolute; right:17px; top:17px; z-index:2; display:grid; place-items:center; width:34px; height:34px; border:1px solid rgba(238,233,255,.42); border-radius:50%; color:#fff; background:rgba(8,8,10,.45); backdrop-filter:blur(8px); font:300 26px/1 'Outfit',sans-serif; cursor:pointer; transition:background .2s ease,transform .2s ease; }
       .coming-soon__close:hover,.coming-soon__close:focus-visible { background:rgba(255,255,255,.15); transform:rotate(90deg); outline:0; }
       @keyframes scroll { 0%,100% { transform:translateY(0); opacity:1; } 65% { transform:translateY(10px); opacity:0; } }
@@ -99,12 +103,12 @@
       <section class="detail" id="about" aria-live="polite"><div><p class="detail__label">SELECTED DIRECTION</p><h3 id="detail-title">夜场与酒吧</h3></div><p class="detail__copy" id="detail-copy">从产品、运营到推广，回到真实的门店现场，解决真正影响体验的每一个环节。</p></section>
     </main>
     <div class="coming-soon" id="coming-soon" role="dialog" aria-modal="true" aria-label="建站中，ThreeDPaper 交互展示" aria-hidden="true">
-      <div class="coming-soon__panel"><button class="coming-soon__close" type="button" aria-label="关闭提示">×</button><iframe class="three-d-paper-frame" title="3D Paper — Site of the Year" src="threeui/3d-paper/sources/3d-paper-site-of-the-year.html" sandbox="allow-scripts" loading="eager"></iframe></div>
+      <div class="coming-soon__panel"><div class="coming-soon__context"><span id="coming-soon-kicker">TBN LAB / 01</span><strong id="coming-soon-title">夜场与酒吧</strong><p>正在建设，敬请期待。</p></div><button class="coming-soon__close" type="button" aria-label="关闭提示">×</button><iframe class="three-d-paper-frame" title="TBN LAB — Coming Soon" src="threeui/3d-paper/sources/tbn-coming-soon.html" sandbox="allow-scripts" loading="eager"></iframe></div>
     </div>
     <script>
-      const cards=[...document.querySelectorAll('.card')]; const title=document.querySelector('#detail-title'); const copy=document.querySelector('#detail-copy'); const modal=document.querySelector('#coming-soon'); const close=document.querySelector('.coming-soon__close'); let previousFocus;
+      const cards=[...document.querySelectorAll('.card')]; const title=document.querySelector('#detail-title'); const copy=document.querySelector('#detail-copy'); const modal=document.querySelector('#coming-soon'); const close=document.querySelector('.coming-soon__close'); const comingSoonKicker=document.querySelector('#coming-soon-kicker'); const comingSoonTitle=document.querySelector('#coming-soon-title'); let previousFocus;
       const select=card=>{ cards.forEach(item=>item.classList.remove('is-active')); card.classList.add('is-active'); title.textContent=card.dataset.title; copy.textContent=card.dataset.copy; };
-      const openModal=card=>{ select(card); previousFocus=card; modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); close.focus(); };
+      const openModal=card=>{ select(card); previousFocus=card; comingSoonKicker.textContent=`TBN LAB / ${card.querySelector('.card__index').textContent}`; comingSoonTitle.textContent=card.dataset.title; modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); close.focus(); };
       const closeModal=()=>{ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); previousFocus?.focus(); };
       cards.forEach(card=>{ card.addEventListener('click',()=>{ if(card.dataset.url) { window.location.assign(card.dataset.url); return; } openModal(card); }); card.addEventListener('focus',()=>select(card)); }); close.addEventListener('click',closeModal); modal.addEventListener('click',event=>{ if(event.target===modal) closeModal(); }); document.addEventListener('keydown',event=>{ if(event.key==='Escape'&&modal.classList.contains('is-open')) closeModal(); });
     </script>
