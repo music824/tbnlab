@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05070c" />
+    <meta
+      name="description"
+      content="TBN ARTISTS — DJs, MCs, performance groups and live acts."
+    />
+    <title>TBN ARTISTS — Artist Roster</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070c'/%3E%3Cpath d='M9 14h46v9H39v28H25V23H9z' fill='%23eaf7ff'/%3E%3Cpath d='M48 45l7-7v13z' fill='%237fd8ff'/%3E%3C/svg%3E" />
+    <link rel="preload" as="image" href="assets/boot/soft-blue-light-flow.jpg" />
+    <link rel="stylesheet" href="styles.css?v=20260916-focus-in-8" />
+  </head>
+  <body>
+    <div class="boot-screen" aria-hidden="true">
+      <div class="boot-screen__texture boot-screen__texture--back"></div>
+      <div class="boot-screen__texture boot-screen__texture--front"></div>
+      <div class="boot-screen__scene">
+        <div class="boot-screen__kicker">
+          <span>TBN / ARTIST DIVISION</span>
+          <span>SHANGHAI · SEOUL</span>
+        </div>
+
+        <div class="boot-card">
+          <strong class="boot-logo" aria-label="TBN">TBN</strong>
+          <div class="boot-card__lower">
+            <div class="boot-card__glass">
+              <span class="boot-card__edition">EST. 2026</span>
+              <span class="boot-card__title">K-POP ARTISTS</span>
+              <div class="boot-card__meta">
+                <span>OFFICIAL ROSTER</span>
+                <span>ENTERING / 20</span>
+              </div>
+              <span class="boot-line"><i></i></span>
+            </div>
+          </div>
+        </div>
+
+        <p class="boot-screen__status"><span></span> CURATING THE NEXT WAVE</p>
+      </div>
+    </div>
+
+    <div class="pointer-glow" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"><span>VIEW</span></div>
+
+    <header class="site-header">
+      <a class="brand magnetic" href="#top" aria-label="TBN Artists 首页">
+        <svg viewBox="0 0 85 24" role="img" aria-label="TBN">
+          <path d="M0 2h25v5h-9v15h-7V7H0V2Zm29 0h18c6 0 9 2 9 6 0 2-1 4-3 5 3 1 5 3 5 5 0 4-3 6-10 6H29V2Zm7 5v4h11c2 0 3-1 3-2s-1-2-3-2H36Zm0 8v4h12c2 0 3-1 3-2s-1-2-3-2H36ZM61 2h7l10 13V2h7v22h-7L68 11v13h-7V2Z" />
+        </svg>
+        <span>ARTIST DIVISION</span>
+      </a>
+
+      <span class="live-mark"><i></i> SHANGHAI · SEOUL</span>
+    </header>
+
+    <main id="top">
+      <section
+        class="hero hero-carousel"
+        aria-labelledby="hero-title"
+        aria-roledescription="carousel"
+        aria-label="TBN featured artists"
+        tabindex="0"
+      >
+        <div class="hero-carousel__background" aria-hidden="true">
+          <img class="hero-carousel__backdrop is-visible" src="assets/posters/roster-20260916-kang-sung-hoon.png" alt="" />
+          <img class="hero-carousel__backdrop" src="assets/posters/roster-20260916-kang-sung-hoon.png" alt="" />
+          <div class="hero-carousel__grade"></div>
+          <div class="hero-carousel__shade"></div>
+          <div class="hero-carousel__grain"></div>
+          <div class="hero-grid"></div>
+        </div>
+
+        <div class="hero-carousel__headline reveal-up">
+          <div class="hero-carousel__brand-block">
+            <span class="hero-carousel__eyebrow">TBN / ARTIST DIVISION · 2026</span>
+            <h1 id="hero-title" class="hero-carousel__title" aria-label="TBN 艺人">
+              <span>TBN</span>
+              <em>ARTISTS</em>
+              <b>艺人</b>
+            </h1>
+          </div>
+
+          <button
+            class="hero-carousel__active magnetic"
+            id="hero-active-profile"
+            type="button"
+            aria-label="打开 KANG SUNG HOON 강성훈 个人主页"
+          >
+            <span id="hero-active-index">01 / 19</span>
+            <h2 id="hero-active-name">KANG SUNG HOON 강성훈</h2>
+            <p id="hero-active-role">K-POP ARTIST</p>
+            <span class="hero-carousel__enter">VIEW WEBSITE ↗</span>
+          </button>
+        </div>
+
+        <div class="hero-filmstrip" aria-label="选择艺人">
+          <div class="hero-filmstrip__track" id="hero-filmstrip"></div>
+        </div>
+
+        <div class="hero-carousel__footer">
+          <div class="hero-carousel__progress" aria-hidden="true">
+            <div class="hero-carousel__numbers">
+              <span id="hero-progress-current">01</span>
+              <span>19</span>
+            </div>
+            <div class="hero-carousel__rail"><i id="hero-progress-bar"></i></div>
+          </div>
+
+          <p class="hero-carousel__hint">SCROLL · DRAG · ARROW KEYS · CLICK TO SELECT</p>
+
+          <div class="hero-carousel__controls">
+            <button class="hero-carousel__arrow magnetic" id="hero-prev" type="button" aria-label="上一位艺人">←</button>
+            <button class="hero-carousel__arrow magnetic" id="hero-next" type="button" aria-label="下一位艺人">→</button>
+          </div>
+
+          <span class="hero-carousel__availability">20 ARTISTS · OFFICIAL ROSTER</span>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="profile-notice" id="profile-notice" aria-labelledby="profile-notice-title">
+      <img class="profile-notice__backdrop" id="profile-notice-image" alt="" />
+      <div class="profile-notice__veil" aria-hidden="true"></div>
+      <div class="profile-notice__content">
+        <span class="profile-notice__eyebrow">TBN / ARTIST WEBSITE · <b id="profile-notice-index">01</b></span>
+        <p class="profile-notice__artist" id="profile-notice-artist">KANG SUNG HOON 강성훈</p>
+        <h2 id="profile-notice-title">COMING<br /><em>SOON</em></h2>
+        <p class="profile-notice__cn">网站正在建立中</p>
+        <button class="profile-notice__return magnetic" type="button">RETURN TO ARTISTS ↙</button>
+      </div>
+    </dialog>
+
+    <noscript>请启用 JavaScript 以浏览 TBN 艺人主页。</noscript>
+    <script src="script.js?v=20260920-uu-order-3"></script>
+  </body>
+</html>
