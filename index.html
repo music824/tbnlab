@@ -18,17 +18,13 @@
       a { color:inherit; text-decoration:none; }
       .site { min-height:100vh; position:relative; isolation:isolate; }
       .ambient { position:absolute; width:52vw; max-width:840px; aspect-ratio:1; border-radius:50%; filter:blur(44px); opacity:.48; pointer-events:none; z-index:-1; background:radial-gradient(circle,rgba(0,137,255,.48),rgba(0,51,163,.20) 41%,transparent 68%); left:50%; bottom:-13rem; transform:translateX(-50%); }
-      .nav { height:92px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(24px,5.2vw,88px); font-family:'Outfit',sans-serif; font-size:14px; }
+      .nav { height:92px; display:flex; align-items:center; padding:0 clamp(24px,5.2vw,88px); font-family:'Outfit',sans-serif; font-size:14px; }
       .brand { letter-spacing:-.06em; display:flex; align-items:center; gap:.28em; font-size:28px; font-weight:600; }
       .brand span { color:var(--cyan); font-weight:400; }
       .brand-dot { margin-top:14px; width:5px; height:5px; border-radius:50%; background:var(--blue); box-shadow:0 0 14px var(--cyan); }
-      .nav-links { display:flex; align-items:center; gap:clamp(20px,3vw,52px); color:#91a8c2; }
-      .nav-links a { position:relative; padding:8px 0; transition:color .25s ease; }
-      .nav-links a:hover,.nav-links a:focus-visible { color:#fff; outline:0; }
-      .nav-links a:first-child::after { content:''; position:absolute; width:4px; height:4px; border-radius:50%; background:var(--cyan); bottom:0; left:50%; box-shadow:0 0 9px var(--blue); }
-      .hero { min-height:calc(100vh - 92px); display:flex; flex-direction:column; padding:clamp(32px,4vh,62px) clamp(24px,5.2vw,88px) 34px; }
-      .stage { position:relative; flex:1; min-height:440px; width:min(1120px,100%); margin:0 auto; perspective:1800px; display:flex; align-items:flex-end; justify-content:center; padding:clamp(40px,7vw,98px) 30px clamp(70px,8vw,112px); }
-      .stage::after { content:''; position:absolute; left:7%; right:7%; bottom:46px; height:112px; background:radial-gradient(ellipse at center,rgba(0,125,255,.48),rgba(0,55,171,.19) 41%,transparent 70%); filter:blur(20px); transform:rotateX(67deg); pointer-events:none; }
+      .hero { min-height:calc(100vh - 92px); display:flex; flex-direction:column; padding:0 clamp(24px,5.2vw,88px); }
+      .stage { position:relative; flex:1; min-height:440px; width:min(1120px,100%); margin:0 auto; perspective:1800px; display:flex; align-items:center; justify-content:center; padding:0 30px; }
+      .stage::after { content:''; position:absolute; left:7%; right:7%; top:calc(50% + 96px); height:112px; background:radial-gradient(ellipse at center,rgba(0,125,255,.48),rgba(0,55,171,.19) 41%,transparent 70%); filter:blur(20px); transform:rotateX(67deg); pointer-events:none; }
       .card { --r:0deg; --ty:0px; --tx:0px; --base-y:0px; appearance:none; font:inherit; text-align:left; color:inherit; border:1px solid rgba(155,219,255,.32); position:absolute; width:clamp(182px,19.3vw,258px); height:clamp(246px,25.3vw,336px); padding:clamp(18px,2vw,28px); overflow:hidden; cursor:pointer; border-radius:20px; background:linear-gradient(130deg,rgba(235,250,255,.17),rgba(0,132,255,.19) 42%,rgba(3,15,45,.78)); box-shadow:inset 1px 1px 0 rgba(255,255,255,.22), inset -1px -1px 0 rgba(0,66,172,.46), 0 24px 48px rgba(0,0,0,.33); backdrop-filter:blur(12px); transform:translate3d(var(--tx),calc(var(--base-y) + var(--ty)),0) rotate(var(--r)); transform-origin:center bottom; transition:transform .48s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .48s ease, filter .35s ease; }
       .card::before { content:''; position:absolute; inset:0; background:linear-gradient(115deg,rgba(255,255,255,.28),transparent 28% 72%,rgba(44,203,255,.24)); opacity:.72; pointer-events:none; }
       .card::after { content:''; width:110px; height:110px; border-radius:50%; position:absolute; right:-58px; top:-44px; background:var(--glow); filter:blur(22px); opacity:.67; pointer-events:none; }
@@ -49,17 +45,6 @@
       .card__info { position:absolute; left:20px; right:20px; bottom:19px; height:50px; z-index:2; opacity:0; transform:translateY(10px); transition:opacity .25s ease,transform .3s ease; pointer-events:none; font-size:11px; color:#e8f8ff; line-height:1.55; }
       .card:hover .card__info,.card:focus-visible .card__info,.card.is-active .card__info { opacity:1; transform:translateY(0); }
       .card:hover .card__mark,.card:focus-visible .card__mark,.card.is-active .card__mark { opacity:0; }
-      .hero-foot { margin-top:auto; display:grid; grid-template-columns:1fr auto 1fr; align-items:end; gap:20px; position:relative; z-index:14; font:400 9px/1.45 'DM Mono',monospace; color:#8da8c6; letter-spacing:.2em; text-transform:uppercase; }
-      .foot-left { max-width:145px; }
-      .scroll-cue { display:flex; flex-direction:column; align-items:center; gap:7px; }
-      .mouse { width:23px; height:37px; border:1px solid #8bc8ed; border-radius:15px; position:relative; }
-      .mouse::after { content:''; position:absolute; width:3px; height:5px; border-radius:4px; background:#e5f8ff; left:9px; top:9px; animation:scroll 1.8s infinite; }
-      .foot-right { justify-self:end; display:flex; gap:17px; align-items:center; text-align:right; max-width:165px; }
-      .foot-right::before { content:''; flex:1; height:1px; min-width:55px; background:#769bbb; }
-      .detail { width:min(1120px,calc(100% - 48px)); margin:0 auto; border-top:1px solid var(--line); padding:clamp(50px,8vw,104px) 0 90px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr); gap:clamp(30px,8vw,120px); }
-      .detail__label { font:500 11px/1.4 'DM Mono',monospace; letter-spacing:.17em; color:var(--cyan); }
-      .detail h3 { font-size:clamp(34px,4vw,58px); letter-spacing:-.07em; line-height:1.12; font-weight:500; margin:18px 0 0; max-width:600px; }
-      .detail__copy { align-self:end; color:#a9c2db; font-size:16px; line-height:1.85; margin:0; }
       .coming-soon { opacity:0; visibility:hidden; position:fixed; inset:0; z-index:40; display:grid; place-items:center; padding:24px; background:rgba(1,7,20,.74); backdrop-filter:blur(12px); transition:opacity .3s ease,visibility .3s ease; }
       .coming-soon.is-open { opacity:1; visibility:visible; }
       .coming-soon__panel { position:relative; width:min(900px,100%); height:min(72svh,640px); min-height:420px; overflow:hidden; border:1px solid rgba(135,215,255,.46); border-radius:22px; background:#020817; box-shadow:0 28px 70px rgba(0,2,15,.66),0 0 55px rgba(0,110,255,.16),inset 0 1px 0 rgba(223,249,255,.18); transform:translateY(15px) scale(.97); transition:transform .34s cubic-bezier(.2,.8,.2,1); }
@@ -71,8 +56,7 @@
       .coming-soon__context p { margin:7px 0 0; color:rgba(205,235,255,.70); font-size:11px; line-height:1.55; }
       .coming-soon__close { position:absolute; right:17px; top:17px; z-index:2; display:grid; place-items:center; width:34px; height:34px; border:1px solid rgba(184,232,255,.48); border-radius:50%; color:#fff; background:rgba(2,10,30,.54); backdrop-filter:blur(8px); font:300 26px/1 'Outfit',sans-serif; cursor:pointer; transition:background .2s ease,transform .2s ease; }
       .coming-soon__close:hover,.coming-soon__close:focus-visible { background:rgba(255,255,255,.15); transform:rotate(90deg); outline:0; }
-      @keyframes scroll { 0%,100% { transform:translateY(0); opacity:1; } 65% { transform:translateY(10px); opacity:0; } }
-      @media (max-width:760px) { .nav { height:75px; padding:0 21px; } .brand { font-size:23px; } .nav-links { display:none; } .hero { min-height:100svh; padding:26px 20px 25px; } .stage { min-height:325px; width:calc(100% + 40px); margin:0 -20px; padding:34px 20px 27px; overflow-x:auto; justify-content:flex-start; align-items:center; gap:14px; scroll-snap-type:x mandatory; scrollbar-width:none; } .stage::-webkit-scrollbar { display:none; } .stage::after { left:0; right:0; bottom:4px; height:74px; } .card { position:relative; flex:0 0 174px; width:174px; height:231px; padding:17px; border-radius:17px; scroll-snap-align:center; } .card h2 { font-size:20px; margin-top:14px; } .card p { font-size:11px; } .card__index { font-size:33px; right:15px; } .c1,.c2,.c3,.c4,.c5 { --r:0deg; --tx:0px; --base-y:0px; z-index:auto; } .card:hover,.card:focus-visible,.card.is-active { --ty:-15px; } .hero-foot { grid-template-columns:1fr auto; } .foot-right { display:none; } .detail { width:calc(100% - 42px); grid-template-columns:1fr; gap:28px; padding-bottom:64px; } .detail__copy { font-size:15px; } }
+      @media (max-width:760px) { .nav { height:75px; padding:0 21px; } .brand { font-size:23px; } .hero { min-height:calc(100svh - 75px); padding:0 20px; } .stage { min-height:325px; width:calc(100% + 40px); margin:0 -20px; padding:0 20px; overflow-x:auto; justify-content:flex-start; align-items:center; gap:14px; scroll-snap-type:x mandatory; scrollbar-width:none; } .stage::-webkit-scrollbar { display:none; } .stage::after { left:0; right:0; top:calc(50% + 62px); height:74px; } .card { position:relative; flex:0 0 174px; width:174px; height:231px; padding:17px; border-radius:17px; scroll-snap-align:center; } .card h2 { font-size:20px; margin-top:14px; } .card p { font-size:11px; } .card__index { font-size:33px; right:15px; } .c1,.c2,.c3,.c4,.c5 { --r:0deg; --tx:0px; --base-y:0px; z-index:auto; } .card:hover,.card:focus-visible,.card.is-active { --ty:-15px; } }
       @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
     </style>
   </head>
@@ -81,7 +65,6 @@
       <div class="ambient"></div>
       <header class="nav">
         <a class="brand" href="#top" aria-label="TBN 实验室首页">TBN <span>LAB</span><i class="brand-dot"></i></a>
-        <nav class="nav-links" aria-label="主导航"><a href="#top">首页</a><a href="#lab">实验方向</a><a href="#about">关于</a><a href="mailto:hello@tbnlab.cn">联系</a></nav>
       </header>
       <section class="hero" id="top" aria-label="TBN 实验方向">
         <div class="stage" id="lab" aria-label="TBN 实验方向，悬停或点击卡片了解更多">
@@ -91,16 +74,14 @@
           <button class="card c4" data-title="商业策划" data-copy="让定位、内容与执行在一条线上。每个方案都从现实条件出发，才有持续发生的机会。"><span class="card__sup">04 / planning</span><h2>商业策划</h2><p>Business Planning</p><span class="card__mark"></span><span class="card__info">不只提出方向，也考虑怎样落在今天。</span><span class="card__index">04</span></button>
           <button class="card c5" data-title="发起人与伙伴" data-copy="TBN 实验室相信长期的合作不只是交换资源，而是一起把有价值的事做得更完整。"><span class="card__sup">05 / people</span><h2>发起人与伙伴</h2><p>People &amp; Partners</p><span class="card__mark"></span><span class="card__info">为同一件值得做的事，找到彼此。</span><span class="card__index">05</span></button>
         </div>
-        <div class="hero-foot"><div class="foot-left">TBN LAB<br />IDEAS INTO REAL NIGHTS</div><div class="scroll-cue"><span class="mouse"></span><span>Explore</span></div><div class="foot-right">A NIGHT WORTH REMEMBERING</div></div>
       </section>
-      <section class="detail" id="about" aria-live="polite"><div><p class="detail__label">SELECTED DIRECTION</p><h3 id="detail-title">夜场与酒吧</h3></div><p class="detail__copy" id="detail-copy">从产品、运营到推广，回到真实的门店现场，解决真正影响体验的每一个环节。</p></section>
     </main>
     <div class="coming-soon" id="coming-soon" role="dialog" aria-modal="true" aria-label="建站中，ThreeDPaper 交互展示" aria-hidden="true">
       <div class="coming-soon__panel"><div class="coming-soon__context"><span id="coming-soon-kicker">TBN LAB / 01</span><strong id="coming-soon-title">夜场与酒吧</strong><p>正在建设，敬请期待。</p></div><button class="coming-soon__close" type="button" aria-label="关闭提示">×</button><iframe class="three-d-paper-frame" title="TBN LAB — Coming Soon" src="threeui/3d-paper/sources/tbn-coming-soon-blue.html" sandbox="allow-scripts" loading="eager"></iframe></div>
     </div>
     <script>
-      const cards=[...document.querySelectorAll('.card')]; const title=document.querySelector('#detail-title'); const copy=document.querySelector('#detail-copy'); const modal=document.querySelector('#coming-soon'); const close=document.querySelector('.coming-soon__close'); const comingSoonKicker=document.querySelector('#coming-soon-kicker'); const comingSoonTitle=document.querySelector('#coming-soon-title'); let previousFocus;
-      const select=card=>{ cards.forEach(item=>item.classList.remove('is-active')); card.classList.add('is-active'); title.textContent=card.dataset.title; copy.textContent=card.dataset.copy; };
+      const cards=[...document.querySelectorAll('.card')]; const modal=document.querySelector('#coming-soon'); const close=document.querySelector('.coming-soon__close'); const comingSoonKicker=document.querySelector('#coming-soon-kicker'); const comingSoonTitle=document.querySelector('#coming-soon-title'); let previousFocus;
+      const select=card=>{ cards.forEach(item=>item.classList.remove('is-active')); card.classList.add('is-active'); };
       const openModal=card=>{ select(card); previousFocus=card; comingSoonKicker.textContent=`TBN LAB / ${card.querySelector('.card__index').textContent}`; comingSoonTitle.textContent=card.dataset.title; modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); close.focus(); };
       const closeModal=()=>{ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); previousFocus?.focus(); };
       cards.forEach(card=>{ card.addEventListener('click',()=>{ if(card.dataset.url) { window.location.assign(card.dataset.url); return; } openModal(card); }); card.addEventListener('focus',()=>select(card)); }); close.addEventListener('click',closeModal); modal.addEventListener('click',event=>{ if(event.target===modal) closeModal(); }); document.addEventListener('keydown',event=>{ if(event.key==='Escape'&&modal.classList.contains('is-open')) closeModal(); });
