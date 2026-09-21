@@ -19,16 +19,20 @@
       .intro { position:fixed; z-index:50; inset:0; display:grid; overflow:hidden; place-items:center; background:#000; color:#eefaff; }
       .intro::before { content:''; position:absolute; width:min(80vw,900px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(24,94,255,.13),transparent 58%); filter:blur(34px); opacity:0; transition:opacity .4s ease; }
       .intro::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:.18; background:linear-gradient(90deg,transparent 49.9%,rgba(255,255,255,.12) 50%,transparent 50.1%); mask-image:linear-gradient(transparent 45%,#000 50%,transparent 55%); }
-      .intro__wash { position:absolute; z-index:0; left:-22%; bottom:-54%; width:144%; height:72%; border-radius:50%; opacity:0; background:radial-gradient(ellipse at 50% 100%,rgba(108,224,255,.98) 0%,rgba(44,145,255,.86) 14%,rgba(12,63,244,.43) 35%,transparent 67%); filter:blur(13px); transform:translateY(25%) scaleX(.32); }
-      .intro__scan { position:absolute; z-index:1; left:-15%; bottom:-14px; width:130%; height:3px; opacity:0; background:linear-gradient(90deg,transparent,rgba(143,235,255,.3) 15%,#d6fcff 50%,rgba(143,235,255,.3) 85%,transparent); box-shadow:0 0 12px 2px #a4eeff,0 0 42px 8px rgba(26,128,255,.8); transform:scaleX(.2); }
-      .intro__word { position:absolute; z-index:2; left:50%; top:50%; color:#f4fbff; font:700 clamp(122px,29vw,390px)/.72 'Outfit',sans-serif; font-style:italic; letter-spacing:-.17em; text-indent:-.13em; text-shadow:0 0 0 rgba(255,255,255,0); transform:translate(-50%,-50%) scale(.74); animation:intro-word-arrive .78s cubic-bezier(.16,.92,.2,1) both; }
+      .intro__wash { position:absolute; z-index:0; left:50%; top:50%; width:min(72vw,820px); aspect-ratio:1; border-radius:50%; opacity:0; background:radial-gradient(circle,rgba(101,213,255,.44) 0%,rgba(31,119,255,.25) 26%,transparent 65%); filter:blur(25px); transform:translate(-50%,-50%) scale(.35); }
+      .intro__glass { position:absolute; z-index:1; left:calc(50% + var(--intro-x,0px)); top:calc(50% + var(--intro-y,0px)); width:clamp(150px,15.3vw,224px); aspect-ratio:1; border:1px solid rgba(183,234,255,.78); border-radius:clamp(28px,3.2vw,45px); opacity:0; background:linear-gradient(142deg,rgba(185,233,255,.31),rgba(47,133,255,.3) 30%,rgba(7,28,102,.72)); box-shadow:inset 2px 2px 1px rgba(255,255,255,.22),inset -8px -10px 22px rgba(0,11,76,.36),0 0 34px rgba(30,130,255,.42); transform:translate(-50%,-50%) scale(.56); }
+      .intro__glass--rear { filter:brightness(.72) saturate(.8); }
+      .intro__glass--front { background:linear-gradient(135deg,rgba(212,248,255,.28),rgba(40,124,255,.22) 38%,rgba(4,19,77,.56)); }
+      .intro__word { position:absolute; z-index:2; left:50%; top:50%; color:#f4fbff; font:700 clamp(122px,29vw,390px)/.72 'Outfit',sans-serif; font-style:italic; letter-spacing:-.17em; text-indent:-.13em; text-shadow:0 0 0 rgba(255,255,255,0); opacity:0; filter:blur(9px); transform:translate(-50%,-50%) scale(.46); }
       .intro__word small { position:absolute; right:-.1em; bottom:-.92em; color:rgba(206,236,255,.52); font:500 9px/1 'DM Mono',monospace; letter-spacing:.38em; white-space:nowrap; }
+      .intro.is-ready .intro__word { opacity:1; filter:blur(0); transform:translate(-50%,-50%) scale(1); transition:transform .84s cubic-bezier(.16,.92,.2,1),opacity .36s ease,filter .56s ease; }
       .intro.is-travelling { background:rgba(0,0,0,.94); transition:background .7s ease; }
       .intro.is-travelling::before { opacity:1; }
-      .intro.is-travelling .intro__word { animation:none; color:#cef8ff; text-shadow:0 0 20px rgba(73,184,255,.88),0 0 56px rgba(16,80,255,.7); transform:translate(calc(-50% + var(--intro-x,0px)),calc(-50% + var(--intro-y,0px))) scale(var(--intro-scale,.16)); transition:transform 1.42s cubic-bezier(.22,.62,.17,1),color .42s ease,text-shadow .64s ease; }
-      .intro.is-lighting { background:rgba(0,0,0,.76); }
-      .intro.is-lighting .intro__wash { animation:bottom-wash 1.48s cubic-bezier(.18,.72,.2,1) both; }
-      .intro.is-lighting .intro__scan { animation:bottom-scan 1.28s cubic-bezier(.18,.72,.2,1) both; }
+      .intro.is-travelling .intro__wash { opacity:1; transform:translate(-50%,-50%) scale(1); transition:transform 1.65s cubic-bezier(.22,.62,.17,1),opacity .72s ease; }
+      .intro.is-travelling .intro__glass--rear { opacity:.56; transform:translate(calc(-50% - 14px),calc(-50% + 12px)) rotate(-11deg) scale(1); transition:transform 1.48s cubic-bezier(.2,.76,.18,1),opacity .72s .12s ease; }
+      .intro.is-travelling .intro__glass--front { opacity:.76; transform:translate(calc(-50% + 12px),calc(-50% - 9px)) rotate(8deg) scale(1); transition:transform 1.55s cubic-bezier(.2,.76,.18,1),opacity .72s .24s ease; }
+      .intro.is-travelling .intro__word { color:#cef8ff; text-shadow:0 0 20px rgba(73,184,255,.88),0 0 56px rgba(16,80,255,.7); transform:translate(calc(-50% + var(--intro-x,0px)),calc(-50% + var(--intro-y,0px))) scale(var(--intro-scale,.16)); transition:transform 1.72s cubic-bezier(.22,.62,.17,1),color .42s ease,text-shadow .64s ease; }
+      .intro.is-lighting { background:rgba(0,0,0,.6); }
       .intro.is-exiting { opacity:0; pointer-events:none; transition:opacity .56s ease; }
       body.intro-pending .site .nav,body.intro-pending .site .core-float,body.intro-pending .site .core-caption { opacity:0; }
       body.intro-pending .site .core-float { animation-play-state:paused; }
@@ -97,9 +101,6 @@
       .coming-soon__context p { margin:7px 0 0; color:rgba(205,235,255,.70); font-size:11px; line-height:1.55; }
       .coming-soon__close { position:absolute; right:17px; top:17px; z-index:2; display:grid; width:34px; height:34px; place-items:center; border:1px solid rgba(184,232,255,.48); border-radius:50%; color:#fff; background:rgba(2,10,30,.54); backdrop-filter:blur(8px); cursor:pointer; font:300 26px/1 'Outfit',sans-serif; transition:background .2s ease,transform .2s ease; }
       .coming-soon__close:hover,.coming-soon__close:focus-visible { background:rgba(255,255,255,.15); transform:rotate(90deg); outline:0; }
-      @keyframes intro-word-arrive { from { opacity:0; transform:translate(-50%,-50%) scale(.46); filter:blur(9px); } to { opacity:1; transform:translate(-50%,-50%) scale(1); filter:blur(0); } }
-      @keyframes bottom-wash { 0% { opacity:0; transform:translateY(28%) scaleX(.28); } 28% { opacity:1; } 76% { opacity:.9; transform:translateY(-35%) scaleX(1); } 100% { opacity:.26; transform:translateY(-55%) scaleX(1.1); } }
-      @keyframes bottom-scan { 0% { opacity:0; transform:translateY(0) scaleX(.18); } 12% { opacity:1; } 68% { opacity:.96; } 100% { opacity:0; transform:translateY(-108svh) scaleX(1); } }
       @keyframes power-on { 0% { opacity:0; filter:brightness(.1); } 42% { opacity:1; filter:brightness(2.2); } 100% { opacity:1; filter:brightness(1); } }
       @keyframes float { 0%,100% { transform:translate3d(0,0,0) rotateZ(0); } 50% { transform:translate3d(0,-17px,18px) rotateZ(1.4deg); } }
       @keyframes dock-arrival { from { opacity:0; transform:translateY(calc(var(--offset-y) + 58px)) rotate(var(--tilt)); } to { opacity:1; transform:translateY(var(--offset-y)) rotate(var(--tilt)); } }
@@ -109,7 +110,7 @@
     </style>
   </head>
   <body>
-    <div class="intro" id="intro" aria-hidden="true"><span class="intro__wash"></span><span class="intro__scan"></span><span class="intro__word">TBN<small>LABORATORY / ENTER</small></span></div>
+    <div class="intro" id="intro" aria-hidden="true"><span class="intro__wash"></span><span class="intro__glass intro__glass--rear"></span><span class="intro__glass intro__glass--front"></span><span class="intro__word">TBN<small>LABORATORY / ENTER</small></span></div>
     <div class="site" id="top">
       <header class="nav">
         <a class="brand" href="#top" aria-label="TBN 实验室首页">TBN <span>LAB</span><i></i></a>
@@ -151,22 +152,23 @@
       const runIntro=()=>{
         document.body.classList.add('intro-pending');
         try { sessionStorage.setItem('tbn-lab-home-intro','seen'); } catch (_) {}
+        window.requestAnimationFrame(()=>intro.classList.add('is-ready'));
         window.setTimeout(()=>{
           const target=document.querySelector('.core-glyph').getBoundingClientRect();
           intro.style.setProperty('--intro-x',`${target.left+target.width/2-window.innerWidth/2}px`);
           intro.style.setProperty('--intro-y',`${target.top+target.height/2-window.innerHeight/2}px`);
           intro.style.setProperty('--intro-scale',window.innerWidth<760?'.42':'.16');
           intro.classList.add('is-travelling');
-        },820);
+        },980);
         window.setTimeout(()=>{
           intro.classList.add('is-lighting');
-        },1500);
+        },1820);
         window.setTimeout(()=>{
           site.classList.add('intro-lit');
           document.body.classList.remove('intro-pending');
-        },1980);
-        window.setTimeout(()=>intro.classList.add('is-exiting'),2400);
-        window.setTimeout(()=>intro.remove(),3060);
+        },2240);
+        window.setTimeout(()=>intro.classList.add('is-exiting'),2780);
+        window.setTimeout(()=>intro.remove(),3400);
       };
       if(playIntro) runIntro(); else intro.remove();
       const select=card=>{
