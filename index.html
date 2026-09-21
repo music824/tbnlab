@@ -16,6 +16,24 @@
       body { overflow:hidden; font-family:'Outfit','Noto Sans SC',sans-serif; -webkit-font-smoothing:antialiased; }
       button,a { font:inherit; }
       .site { isolation:isolate; position:relative; min-height:100svh; overflow:hidden; background:radial-gradient(75% 96% at 50% 19%,#0d2c77 0%,#071b4c 17%,#030817 46%,#010205 82%); }
+      .intro { position:fixed; z-index:50; inset:0; display:grid; overflow:hidden; place-items:center; background:#000; color:#eefaff; }
+      .intro::before { content:''; position:absolute; width:min(80vw,900px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(24,94,255,.13),transparent 58%); filter:blur(34px); opacity:0; transition:opacity .4s ease; }
+      .intro::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:.18; background:linear-gradient(90deg,transparent 49.9%,rgba(255,255,255,.12) 50%,transparent 50.1%); mask-image:linear-gradient(transparent 45%,#000 50%,transparent 55%); }
+      .intro__word { position:absolute; z-index:1; left:50%; top:50%; color:#f4fbff; font:700 clamp(122px,29vw,390px)/.72 'Outfit',sans-serif; font-style:italic; letter-spacing:-.17em; text-indent:-.13em; text-shadow:0 0 0 rgba(255,255,255,0); transform:translate(-50%,-50%) scale(.74); animation:intro-word-arrive .62s cubic-bezier(.16,.92,.2,1) both; }
+      .intro__word small { position:absolute; right:-.1em; bottom:-.92em; color:rgba(206,236,255,.52); font:500 9px/1 'DM Mono',monospace; letter-spacing:.38em; white-space:nowrap; }
+      .intro.is-travelling { background:rgba(0,0,0,.94); transition:background .48s ease; }
+      .intro.is-travelling::before { opacity:1; }
+      .intro.is-travelling .intro__word { animation:none; color:#cef8ff; text-shadow:0 0 20px rgba(73,184,255,.88),0 0 56px rgba(16,80,255,.7); transform:translate(calc(-50% + var(--intro-x,0px)),calc(-50% + var(--intro-y,0px))) scale(var(--intro-scale,.16)); transition:transform .76s cubic-bezier(.16,.92,.2,1),color .28s ease,text-shadow .48s ease; }
+      .intro.is-exiting { opacity:0; pointer-events:none; transition:opacity .56s ease; }
+      body.intro-pending .site .nav,body.intro-pending .site .core-float,body.intro-pending .site .core-caption { opacity:0; }
+      body.intro-pending .site .core-float { animation-play-state:paused; }
+      body.intro-pending .site .core-stage::before,body.intro-pending .site .core-stage::after,body.intro-pending .site .dock::before,body.intro-pending .site .dock::after { opacity:0; }
+      body.intro-pending .site .dock-card { animation-play-state:paused; opacity:0; }
+      .site.intro-lit .nav,.site.intro-lit .core-float,.site.intro-lit .core-caption { opacity:1; transition:opacity .26s ease; }
+      .site.intro-lit .core-stage::before { animation:power-on .58s cubic-bezier(.16,.92,.2,1) both; }
+      .site.intro-lit .core-stage::after { animation:power-on .46s .08s cubic-bezier(.16,.92,.2,1) both; }
+      .site.intro-lit .dock::before,.site.intro-lit .dock::after { opacity:1; transition:opacity .24s ease; }
+      .site.intro-lit .dock-card { animation-play-state:running; }
       .site::before { content:''; position:absolute; z-index:-2; inset:-30%; background:radial-gradient(ellipse at 50% 22%,rgba(48,129,255,.26),transparent 24%),radial-gradient(ellipse at 15% 0%,rgba(32,107,255,.18),transparent 23%),radial-gradient(ellipse at 82% 69%,rgba(5,69,204,.14),transparent 22%); filter:blur(22px); pointer-events:none; }
       .site::after { content:''; position:absolute; inset:0; z-index:4; pointer-events:none; opacity:.48; background-image:linear-gradient(rgba(203,235,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(203,235,255,.021) 1px,transparent 1px); background-size:40px 40px; mask-image:radial-gradient(ellipse at 50% 35%,#000 0%,transparent 69%); }
       .nav { position:relative; z-index:8; display:flex; align-items:center; justify-content:space-between; height:88px; padding:0 clamp(25px,5.2vw,80px); }
@@ -74,14 +92,17 @@
       .coming-soon__context p { margin:7px 0 0; color:rgba(205,235,255,.70); font-size:11px; line-height:1.55; }
       .coming-soon__close { position:absolute; right:17px; top:17px; z-index:2; display:grid; width:34px; height:34px; place-items:center; border:1px solid rgba(184,232,255,.48); border-radius:50%; color:#fff; background:rgba(2,10,30,.54); backdrop-filter:blur(8px); cursor:pointer; font:300 26px/1 'Outfit',sans-serif; transition:background .2s ease,transform .2s ease; }
       .coming-soon__close:hover,.coming-soon__close:focus-visible { background:rgba(255,255,255,.15); transform:rotate(90deg); outline:0; }
+      @keyframes intro-word-arrive { from { opacity:0; transform:translate(-50%,-50%) scale(.46); filter:blur(9px); } to { opacity:1; transform:translate(-50%,-50%) scale(1); filter:blur(0); } }
+      @keyframes power-on { 0% { opacity:0; filter:brightness(.1); } 42% { opacity:1; filter:brightness(2.2); } 100% { opacity:1; filter:brightness(1); } }
       @keyframes float { 0%,100% { transform:translate3d(0,0,0) rotateZ(0); } 50% { transform:translate3d(0,-17px,18px) rotateZ(1.4deg); } }
       @keyframes dock-arrival { from { opacity:0; transform:translateY(calc(var(--offset-y) + 58px)) rotate(var(--tilt)); } to { opacity:1; transform:translateY(var(--offset-y)) rotate(var(--tilt)); } }
       @keyframes sweep { 0%,20% { transform:translateX(-25%) rotate(21deg); opacity:0; } 35% { opacity:.72; } 58%,100% { transform:translateX(160%) rotate(21deg); opacity:0; } }
-      @media (max-width:760px) { body { overflow:auto; } .site { min-height:100svh; overflow:hidden; } .nav { height:70px; padding:0 22px; } .brand { font-size:24px; } .nav__state { font-size:8px; } .hero { height:calc(100svh - 70px); min-height:620px; padding:0 0 20px; } .core-stage { min-height:310px; } .core-stage::before { width:86vw; } .core-stage::after { width:72vw; } .core-float { width:166px; } .core-caption { top:calc(50% + 108px); font-size:8px; } .core-link { display:none; } .dock { display:flex; width:calc(100% - 32px); height:215px; overflow-x:auto; overflow-y:visible; perspective:none; scroll-snap-type:x mandatory; scrollbar-width:none; } .dock::before { left:0; top:1px; } .dock::-webkit-scrollbar { display:none; } .dock-card,.c1,.c2,.c3,.c4,.c5 { position:relative; bottom:auto; left:auto; flex:0 0 172px; width:172px; height:190px; margin-top:19px; padding:20px; transform:translateY(0) rotate(0); scroll-snap-align:center; } .dock-card:hover,.dock-card:focus-visible,.dock-card.is-active { transform:translateY(-10px) scale(1.01); } .dock-card h2 { font-size:20px; } .dock-card__number { right:16px; top:17px; font-size:31px; } }
-      @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+      @media (max-width:760px) { body { overflow:auto; } .intro__word { font-size:clamp(112px,31vw,168px); } .intro__word small { bottom:-1.1em; font-size:7px; } .site { min-height:100svh; overflow:hidden; } .nav { height:70px; padding:0 22px; } .brand { font-size:24px; } .nav__state { font-size:8px; } .hero { height:calc(100svh - 70px); min-height:620px; padding:0 0 20px; } .core-stage { min-height:310px; } .core-stage::before { width:86vw; } .core-stage::after { width:72vw; } .core-float { width:166px; } .core-caption { top:calc(50% + 108px); font-size:8px; } .core-link { display:none; } .dock { display:flex; width:calc(100% - 32px); height:215px; overflow-x:auto; overflow-y:visible; perspective:none; scroll-snap-type:x mandatory; scrollbar-width:none; } .dock::before { left:0; top:1px; } .dock::-webkit-scrollbar { display:none; } .dock-card,.c1,.c2,.c3,.c4,.c5 { position:relative; bottom:auto; left:auto; flex:0 0 172px; width:172px; height:190px; margin-top:19px; padding:20px; transform:translateY(0) rotate(0); scroll-snap-align:center; } .dock-card:hover,.dock-card:focus-visible,.dock-card.is-active { transform:translateY(-10px) scale(1.01); } .dock-card h2 { font-size:20px; } .dock-card__number { right:16px; top:17px; font-size:31px; } }
+      @media (prefers-reduced-motion:reduce) { .intro { display:none; } *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
     </style>
   </head>
   <body>
+    <div class="intro" id="intro" aria-hidden="true"><span class="intro__word">TBN<small>LABORATORY / ENTER</small></span></div>
     <div class="site" id="top">
       <header class="nav">
         <a class="brand" href="#top" aria-label="TBN 实验室首页">TBN <span>LAB</span><i></i></a>
@@ -113,7 +134,31 @@
       const comingSoonTitle=document.querySelector('#coming-soon-title');
       const root=document.documentElement;
       const site=document.querySelector('.site');
+      const intro=document.querySelector('#intro');
       let previousFocus;
+      const navigation=performance.getEntriesByType('navigation')[0];
+      const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let hasSeenIntro=false;
+      try { hasSeenIntro=sessionStorage.getItem('tbn-lab-home-intro')==='seen'; } catch (_) {}
+      const playIntro=!reducedMotion&&(navigation?.type==='reload'||!hasSeenIntro);
+      const runIntro=()=>{
+        document.body.classList.add('intro-pending');
+        try { sessionStorage.setItem('tbn-lab-home-intro','seen'); } catch (_) {}
+        window.setTimeout(()=>{
+          const target=document.querySelector('.core-glyph').getBoundingClientRect();
+          intro.style.setProperty('--intro-x',`${target.left+target.width/2-window.innerWidth/2}px`);
+          intro.style.setProperty('--intro-y',`${target.top+target.height/2-window.innerHeight/2}px`);
+          intro.style.setProperty('--intro-scale',window.innerWidth<760?'.42':'.16');
+          intro.classList.add('is-travelling');
+        },650);
+        window.setTimeout(()=>{
+          site.classList.add('intro-lit');
+          document.body.classList.remove('intro-pending');
+        },1220);
+        window.setTimeout(()=>intro.classList.add('is-exiting'),1390);
+        window.setTimeout(()=>intro.remove(),2000);
+      };
+      if(playIntro) runIntro(); else intro.remove();
       const select=card=>{
         cards.forEach(item=>item.classList.toggle('is-active',item===card));
         site.classList.add('has-selection');
