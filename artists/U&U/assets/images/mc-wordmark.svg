@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="620" viewBox="0 0 2000 620" role="img" aria-labelledby="title desc">
+  <title id="title">MC UNO Gold Wordmark</title>
+  <desc id="desc">A custom geometric gold wordmark spelling MC UNO.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8E5C16"/>
+      <stop offset="0.25" stop-color="#E7C16D"/>
+      <stop offset="0.5" stop-color="#FFF0B1"/>
+      <stop offset="0.76" stop-color="#C68A2C"/>
+      <stop offset="1" stop-color="#F1D88B"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M112 235V76L198 181L284 76V235" stroke-width="22"/>
+    <path d="M466 102C437 78 407 68 374 68C307 68 263 107 263 157C263 207 307 246 374 246C407 246 437 236 466 212" stroke-width="22" transform="translate(78 0)"/>
+    <path d="M600 52V568" stroke-width="4" opacity="0.7"/>
+
+    <path d="M713 104V347C713 492 810 545 930 545C1050 545 1147 492 1147 347V104" stroke-width="30"/>
+    <path d="M674 104H752M1108 104H1186" stroke-width="16"/>
+
+    <path d="M1275 545V104L1605 545V104" stroke-width="30"/>
+    <path d="M1236 104H1314M1566 104H1644" stroke-width="16"/>
+
+    <ellipse cx="1780" cy="324" rx="152" ry="221" stroke-width="30"/>
+  </g>
+  <circle cx="600" cy="309" r="9" fill="url(#gold)"/>
+  <path d="M96 581H1904" stroke="url(#gold)" stroke-width="3" opacity="0.55"/>
+</svg>

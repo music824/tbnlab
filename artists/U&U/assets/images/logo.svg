@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="600" viewBox="0 0 1800 600" role="img" aria-labelledby="title desc">
+  <title id="title">U&amp;U Gold Logo</title>
+  <desc id="desc">A custom gold double-U wordmark joined by a moon-inspired ampersand.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8E5C16"/>
+      <stop offset="0.22" stop-color="#E4BE68"/>
+      <stop offset="0.48" stop-color="#FFF0B1"/>
+      <stop offset="0.72" stop-color="#C78A2C"/>
+      <stop offset="1" stop-color="#F0D486"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="38%" cy="32%" r="70%">
+      <stop offset="0" stop-color="#FFF3B5" stop-opacity="0.34"/>
+      <stop offset="0.62" stop-color="#D4A345" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#8C5A12" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="900" cy="302" r="154" fill="url(#moon)"/>
+  <circle cx="900" cy="302" r="146" fill="none" stroke="url(#gold)" stroke-width="4" opacity="0.75"/>
+
+  <g fill="none" stroke="url(#gold)" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M205 116V332C205 462 302 520 430 520C558 520 655 462 655 332V116" stroke-width="28"/>
+    <path d="M152 116H269M591 116H708" stroke-width="18"/>
+
+    <path d="M1145 116V332C1145 462 1242 520 1370 520C1498 520 1595 462 1595 332V116" stroke-width="28"/>
+    <path d="M1092 116H1209M1531 116H1648" stroke-width="18"/>
+
+    <path d="M1004 485L833 247C783 178 828 112 915 112C988 112 1027 166 998 222C970 275 890 310 821 359C755 406 765 484 823 520C891 562 979 516 1041 418" stroke-width="26"/>
+    <path d="M944 339H1068" stroke-width="18"/>
+  </g>
+
+  <path d="M88 564H704" stroke="url(#gold)" stroke-width="3" opacity="0.75"/>
+  <path d="M1096 564H1712" stroke="url(#gold)" stroke-width="3" opacity="0.75"/>
+  <path d="M900 548L916 564L900 580L884 564Z" fill="url(#gold)"/>
+</svg>

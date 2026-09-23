@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="620" viewBox="0 0 2000 620" role="img" aria-labelledby="title desc">
+  <title id="title">JUN Gold Wordmark</title>
+  <desc id="desc">A custom geometric gold wordmark spelling JUN.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8E5C16"/>
+      <stop offset="0.25" stop-color="#E7C16D"/>
+      <stop offset="0.5" stop-color="#FFF0B1"/>
+      <stop offset="0.76" stop-color="#C68A2C"/>
+      <stop offset="1" stop-color="#F1D88B"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="square" stroke-linejoin="miter" stroke-width="30">
+    <path d="M420 104V386C420 493 354 548 252 548C174 548 116 515 84 454"/>
+    <path d="M760 104V351C760 486 850 548 974 548C1098 548 1188 486 1188 351V104"/>
+    <path d="M1490 548V104L1902 548V104"/>
+  </g>
+  <g stroke="url(#gold)" stroke-width="16">
+    <path d="M362 104H478M702 104H818M1130 104H1246M1432 104H1548M1844 104H1960"/>
+  </g>
+  <path d="M96 581H1904" stroke="url(#gold)" stroke-width="3" opacity="0.55"/>
+</svg>
