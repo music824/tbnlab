@@ -5,7 +5,7 @@ const artists = [
   { name: "KRISHA", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-krisha.png", accent: "#2f64ff", website: "" },
   { name: "PICKTA", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-pickta.png", accent: "#d8432e", website: "PickTa/index.html" },
   { name: "X:IN 엑신", latinName: "X:IN", koreanName: "엑신", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-xin.png", accent: "#4a58c7", website: "" },
-  { name: "U&U", role: "PERFORMANCE DUO", image: "assets/posters/uu-oriental.png", accent: "#d0b16d", website: "U&U/index.html" },
+  { name: "U&U", role: "PERFORMANCE DUO", image: "assets/posters/uu-oriental.png", accent: "#d0b16d", website: "u-and-u/index.html" },
   { name: "SSREAM 쌤", latinName: "SSREAM", koreanName: "쌤", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-ssream.png", accent: "#42bcd2", website: "" },
   { name: "MC 베니", role: "RAPPER / MC", image: "assets/posters/roster-20260916-mc-beni.png", accent: "#e5a412", website: "" },
   { name: "DJ 프레스킷", latinName: "DJ", koreanName: "프레스킷", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-dj-presket.png", accent: "#eb2528", website: "" },
