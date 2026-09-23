@@ -63,6 +63,7 @@ body{
   } else {
     document.title = 'TBN LAB — 页面建设中';
     document.querySelector('#bg h1').textContent = '页面建设中';
+    document.querySelector('#hint').innerHTML = '<b>To be number one</b>';
   }
 </script>
 
@@ -195,15 +196,30 @@ function drawConstruction(ctx){
   const g=ctx.createLinearGradient(0,0,TW,TH);
   g.addColorStop(0,'#061d45'); g.addColorStop(.5,'#020916'); g.addColorStop(1,'#062a62');
   ctx.fillStyle=g; ctx.fillRect(0,0,TW,TH);
-  const glow=ctx.createRadialGradient(600,710,0,600,710,720);
-  glow.addColorStop(0,'rgba(39,214,255,.18)'); glow.addColorStop(.58,'rgba(39,214,255,.045)'); glow.addColorStop(1,'rgba(39,214,255,0)');
+  const glow=ctx.createRadialGradient(600,760,0,600,760,760);
+  glow.addColorStop(0,'rgba(39,214,255,.22)'); glow.addColorStop(.54,'rgba(39,214,255,.06)'); glow.addColorStop(1,'rgba(39,214,255,0)');
   ctx.fillStyle=glow; ctx.fillRect(0,0,TW,TH);
-  ctx.strokeStyle='rgba(181,225,255,.14)'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(168,634); ctx.lineTo(TW-168,634); ctx.stroke();
+  const border=ctx.createLinearGradient(80,80,TW-80,TH-80);
+  border.addColorStop(0,'rgba(208,241,255,.42)'); border.addColorStop(.5,'rgba(39,214,255,.08)'); border.addColorStop(1,'rgba(208,241,255,.28)');
+  ctx.strokeStyle=border; ctx.lineWidth=2; rr(ctx,78,78,TW-156,TH-156,34); ctx.stroke();
+  ctx.save(); ctx.translate(600,780); ctx.rotate(-.16);
+  ctx.strokeStyle='rgba(39,214,255,.18)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.ellipse(0,0,430,168,0,0,Math.PI*2); ctx.stroke();
+  ctx.strokeStyle='rgba(172,218,255,.12)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.ellipse(0,0,338,122,0,0,Math.PI*2); ctx.stroke();
+  ctx.restore();
+  ctx.fillStyle='rgba(39,214,255,.92)'; ctx.fillRect(120,180,50,4);
+  ctx.fillStyle='rgba(221,242,255,.72)'; ctx.font='700 22px '+MONO;
+  track(ctx,'TBN LAB / UNDER CONSTRUCTION',190,189,3,false);
+  ctx.strokeStyle='rgba(170,222,255,.22)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(120,228); ctx.lineTo(TW-120,228); ctx.stroke();
+  ctx.fillStyle='rgba(39,214,255,.7)'; ctx.fillRect(120,1335,194,3);
+  ctx.strokeStyle='rgba(170,222,255,.18)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(120,1388); ctx.lineTo(TW-120,1388); ctx.stroke();
   ctx.fillStyle='#F2FBFF'; ctx.font='600 112px system-ui, sans-serif';
-  mid(ctx,'页面建设中',785);
+  mid(ctx,'页面建设中',800);
   ctx.fillStyle=LIME; ctx.font='700 30px '+MONO;
-  track(ctx,'COMING SOON',600,866,5,true);
+  track(ctx,'COMING SOON',600,880,5,true);
 }
 function drawGame(ctx){
   if(IS_ABOUT){ drawAbout(ctx); return; }
