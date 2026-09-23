@@ -60,6 +60,9 @@ body{
   if (TBN_ABOUT) {
     document.title = 'TBN LAB — About Us';
     document.querySelector('#bg h1').textContent = 'ABOUT US';
+  } else {
+    document.title = 'TBN LAB — 页面建设中';
+    document.querySelector('#bg h1').textContent = '页面建设中';
   }
 </script>
 
@@ -188,8 +191,23 @@ function drawAbout(ctx){
   paragraphs.forEach((paragraph,index)=>{ y=wrapCJK(ctx,paragraph,120,y,960,58)+22; if(index===1){ ctx.strokeStyle='rgba(39,214,255,.22)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(120,y-7); ctx.lineTo(TW-120,y-7); ctx.stroke(); y+=16; } });
   ctx.fillStyle=LIME; ctx.font='700 20px '+MONO; track(ctx,'TBN LAB  /  LET\'S BUILD TOGETHER',120,1516,3,false);
 }
+function drawConstruction(ctx){
+  const g=ctx.createLinearGradient(0,0,TW,TH);
+  g.addColorStop(0,'#061d45'); g.addColorStop(.5,'#020916'); g.addColorStop(1,'#062a62');
+  ctx.fillStyle=g; ctx.fillRect(0,0,TW,TH);
+  const glow=ctx.createRadialGradient(600,710,0,600,710,720);
+  glow.addColorStop(0,'rgba(39,214,255,.18)'); glow.addColorStop(.58,'rgba(39,214,255,.045)'); glow.addColorStop(1,'rgba(39,214,255,0)');
+  ctx.fillStyle=glow; ctx.fillRect(0,0,TW,TH);
+  ctx.strokeStyle='rgba(181,225,255,.14)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(168,634); ctx.lineTo(TW-168,634); ctx.stroke();
+  ctx.fillStyle='#F2FBFF'; ctx.font='600 112px system-ui, sans-serif';
+  mid(ctx,'页面建设中',785);
+  ctx.fillStyle=LIME; ctx.font='700 30px '+MONO;
+  track(ctx,'COMING SOON',600,866,5,true);
+}
 function drawGame(ctx){
   if(IS_ABOUT){ drawAbout(ctx); return; }
+  drawConstruction(ctx); return;
   const g=ctx.createLinearGradient(0,0,TW,TH);
   g.addColorStop(0,'#062A62'); g.addColorStop(0.55,'#020B22'); g.addColorStop(1,'#083B79');
   ctx.fillStyle=g; ctx.fillRect(0,0,TW,TH);
