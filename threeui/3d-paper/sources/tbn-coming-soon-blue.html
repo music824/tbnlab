@@ -176,16 +176,16 @@ function drawAbout(ctx){
   ctx.fillStyle=LIME; ctx.font='700 25px '+MONO; track(ctx,'TBN LAB / ABOUT US',120,180,4,false);
   ctx.strokeStyle='rgba(39,214,255,.42)'; ctx.lineWidth=1.4;
   ctx.beginPath(); ctx.moveTo(120,216); ctx.lineTo(TW-120,216); ctx.stroke();
-  ctx.fillStyle='#F2FBFF'; ctx.font='600 94px "Inter Tight", Inter, sans-serif'; ctx.fillText('ABOUT US',120,372);
-  ctx.fillStyle=CYAN; ctx.font='700 22px '+MONO; track(ctx,'CULTURE  /  ENTERTAINMENT  /  RESOURCE',120,430,3,false);
+  ctx.fillStyle='#F2FBFF'; ctx.font='600 106px "Inter Tight", Inter, sans-serif'; ctx.fillText('ABOUT US',120,382);
+  ctx.fillStyle=CYAN; ctx.font='700 24px '+MONO; track(ctx,'CULTURE  /  ENTERTAINMENT  /  RESOURCE',120,444,3,false);
   const paragraphs=[
     'TBN实验室，是一家聚焦文化娱乐项目策划与统筹、资源整合、顾问服务和内容传播的综合服务机构。',
     '业务涵盖夜经济娱乐及酒吧项目全案交付、中韩及K-POP艺人资源整合与演出合作、音乐节与演唱会项目、线上传媒及文旅项目规划。',
     '在夜经济及酒吧领域，我们结合行业资源、项目经验与TBN内容品牌矩阵，为投资人及项目甲方提供从前期诊断、项目定位、方案策划、空间及品牌设计，到施工统筹、人才引进、开业筹备和经营陪跑的综合服务。',
     '期待与您携手合作，共同推动项目落地。'
   ];
-  let y=536; ctx.fillStyle='rgba(242,251,255,.88)'; ctx.font='500 28px system-ui, sans-serif';
-  paragraphs.forEach((paragraph,index)=>{ y=wrapCJK(ctx,paragraph,120,y,960,47)+28; if(index===1){ ctx.strokeStyle='rgba(39,214,255,.22)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(120,y-7); ctx.lineTo(TW-120,y-7); ctx.stroke(); y+=18; } });
+  let y=550; ctx.fillStyle='rgba(242,251,255,.92)'; ctx.font='500 36px system-ui, sans-serif';
+  paragraphs.forEach((paragraph,index)=>{ y=wrapCJK(ctx,paragraph,120,y,960,58)+22; if(index===1){ ctx.strokeStyle='rgba(39,214,255,.22)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(120,y-7); ctx.lineTo(TW-120,y-7); ctx.stroke(); y+=16; } });
   ctx.fillStyle=LIME; ctx.font='700 20px '+MONO; track(ctx,'TBN LAB  /  LET\'S BUILD TOGETHER',120,1516,3,false);
 }
 function drawGame(ctx){
