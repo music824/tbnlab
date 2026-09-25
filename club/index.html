@@ -156,9 +156,12 @@
     .button.primary { color: var(--black); background: var(--signal); border-color: var(--signal); font-weight: 800; }
     .button:hover { color: var(--black); background: var(--white); border-color: var(--white); }
     .hero-console { border-top: 1px solid var(--line); }
-    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); }
+    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; transition: color .45s ease, background-color .45s ease, transform .45s cubic-bezier(.22, 1, .36, 1); }
     .console-row small { color: #615e58; font: 700 10px "DIN Alternate", sans-serif; letter-spacing: .14em; }
     .console-row strong { font-size: 15px; line-height: 1.45; }
+    .console-row:hover, .console-row:focus-visible { color: var(--signal); background: linear-gradient(90deg, rgba(255, 77, 0, .12), transparent 76%); transform: translateX(8px); }
+    .console-row:hover small, .console-row:focus-visible small { color: var(--signal); }
+    .console-row:focus-visible { outline: 1px solid var(--signal); outline-offset: -1px; }
     .console-row.bonus strong { color: var(--signal); }
     .console-row.bonus strong span { display: block; margin-top: 3px; color: #77736c; font-size: 9px; font-weight: 500; letter-spacing: .08em; }
     .hero-foot { display: flex; justify-content: space-between; margin-top: 84px; padding-top: 16px; border-top: 1px solid var(--line); color: #65615b; font-size: 10px; letter-spacing: .16em; }
@@ -397,7 +400,7 @@
     </a>
     <nav class="nav-links" aria-label="主导航">
       <a href="#home">首页介绍</a>
-      <a href="#about">团队介绍</a>
+      <a href="#about">关于我们</a>
       <a href="#modes">五项服务</a>
       <a href="#artists">签约艺人</a>
       <a href="#projects">项目案例</a>
@@ -420,11 +423,11 @@
             </div>
           </div>
           <aside class="hero-console reveal" aria-label="服务摘要">
-            <div class="console-row"><small>01 / MODE</small><strong>全案交付</strong></div>
-            <div class="console-row"><small>02 / MODE</small><strong>项目指导</strong></div>
-            <div class="console-row"><small>03 / MODE</small><strong>项目陪跑</strong></div>
-            <div class="console-row"><small>04 / MODE</small><strong>品牌设计外包</strong></div>
-            <div class="console-row bonus"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></div>
+            <a class="console-row" href="#modes" data-mode-target="delivery"><small>01 / MODE</small><strong>全案交付</strong></a>
+            <a class="console-row" href="#modes" data-mode-target="consult"><small>02 / MODE</small><strong>项目指导</strong></a>
+            <a class="console-row" href="#modes" data-mode-target="coach"><small>03 / MODE</small><strong>项目陪跑</strong></a>
+            <a class="console-row" href="#modes" data-mode-target="design"><small>04 / MODE</small><strong>品牌设计外包</strong></a>
+            <a class="console-row bonus" href="#modes" data-mode-target="analytics"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></a>
           </aside>
         </div>
         <div class="hero-foot reveal"><span>由深圳龙洙传媒有限公司创办</span><span>SCROLL TO EXPLORE ↓</span></div>
@@ -512,7 +515,7 @@
         <h2 class="reveal">先把项目情况<br><em>说清楚</em></h2>
         <div class="contact-grid reveal">
           <p>如果您正在筹备新的夜经济娱乐或酒吧项目，或现有项目需要重新定位与经营优化，欢迎与我们沟通项目所在城市、当前阶段、投资目标及核心问题。</p>
-          <div class="contact-details"><strong>TBN实验室 × 深圳龙洙传媒有限公司</strong><span>项目联系人：金会杰</span><small>电话 / 微信 / 邮箱：正式发布前补充</small></div>
+          <div class="contact-details"><strong>TBN实验室</strong></div>
         </div>
       </div>
     </section>
@@ -580,6 +583,7 @@
     }
 
     modeTabs.forEach(tab => tab.addEventListener('click', () => renderMode(tab.dataset.mode)));
+    document.querySelectorAll('[data-mode-target]').forEach(row => row.addEventListener('click', () => renderMode(row.dataset.modeTarget)));
     renderMode('delivery');
 
     const sections = document.querySelectorAll('.section');
