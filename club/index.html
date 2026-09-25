@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TBN实验室夜经济娱乐及酒吧项目服务介绍：全案交付、项目指导、项目陪跑、品牌设计外包与经营数据分析。">
+  <meta name="theme-color" content="#0a0a09">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ff4d00'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial' font-weight='900' font-size='22' fill='%230a0a09'%3ETBN%3C/text%3E%3C/svg%3E">
+  <title>TBN实验室｜夜经济娱乐及酒吧项目服务</title>
+  <style>
+    :root {
+      --black: #0a0a09;
+      --black-2: #121210;
+      --paper: #eee9df;
+      --paper-2: #d9d2c4;
+      --white: #f8f4eb;
+      --muted: #9b978f;
+      --line: rgba(248, 244, 235, .16);
+      --ink-line: rgba(10, 10, 9, .18);
+      --signal: #ff4d00;
+      --signal-soft: #ff7a42;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--black); }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--white);
+      background: var(--black);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+    button, a { color: inherit; font: inherit; }
+    button { border: 0; }
+    a { text-decoration: none; }
+    h1, h2, h3, p, figure { margin: 0; }
+    [id] { scroll-margin-top: 86px; }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 120;
+      width: 0;
+      height: 3px;
+      background: var(--signal);
+      box-shadow: 0 0 18px rgba(255, 77, 0, .7);
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 4.5vw, 72px);
+      border-bottom: 1px solid transparent;
+      transition: background .35s, border-color .35s;
+    }
+    .nav.scrolled {
+      background: rgba(10, 10, 9, .9);
+      border-color: var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 13px; }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: var(--black);
+      background: var(--signal);
+      font: 900 17px/1 "Arial Black", sans-serif;
+      letter-spacing: -.08em;
+    }
+    .brand-text strong { display: block; font-size: 14px; letter-spacing: .12em; }
+    .brand-text span { display: block; margin-top: 3px; color: #848078; font-size: 9px; letter-spacing: .21em; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #b7b2a9; font-size: 12px; }
+    .nav-links a { position: relative; padding: 9px 0; }
+    .nav-links a::after { content: ""; position: absolute; inset: auto 0 3px; height: 1px; background: var(--signal); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { padding: 11px 17px !important; border: 1px solid #4a4741; color: var(--white); }
+    .nav-cta::after { display: none; }
+    .menu-toggle { display: none; width: 44px; height: 44px; background: transparent; cursor: pointer; }
+    .menu-toggle span { display: block; width: 22px; height: 1px; margin: 6px auto; background: var(--white); transition: transform .3s; }
+
+    .section { position: relative; padding: clamp(96px, 11vw, 170px) clamp(22px, 6vw, 96px); overflow: hidden; }
+    .wrap { width: min(1400px, 100%); margin: 0 auto; position: relative; z-index: 2; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--signal-soft); font: 700 10px/1.2 "DIN Alternate", sans-serif; letter-spacing: .25em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 34px; height: 2px; background: currentColor; }
+    .display {
+      margin-top: 22px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(46px, 7vw, 104px);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+    .display em { color: var(--signal); font-style: normal; }
+    .lead { max-width: 780px; color: #aaa59d; font-size: clamp(16px, 1.45vw, 20px); line-height: 1.85; }
+    .rule { height: 1px; background: var(--line); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .in-view .reveal { opacity: 1; transform: none; }
+    .in-view .reveal:nth-child(2) { transition-delay: .06s; }
+    .in-view .reveal:nth-child(3) { transition-delay: .12s; }
+    .in-view .reveal:nth-child(4) { transition-delay: .18s; }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding-top: 132px;
+      padding-bottom: 52px;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, transparent 49.9%, rgba(255,255,255,.045) 50%, transparent 50.1%),
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 25%;
+    }
+    .hero::after {
+      content: "NIGHT";
+      position: absolute;
+      z-index: -1;
+      right: -4vw;
+      top: 14vh;
+      color: rgba(255,255,255,.025);
+      font: 900 clamp(150px, 29vw, 470px)/.75 "Arial Black", sans-serif;
+      letter-spacing: -.13em;
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: clamp(50px, 8vw, 130px); align-items: end; }
+    .hero h1 {
+      max-width: 1040px;
+      margin: 24px 0 35px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(58px, 8.9vw, 132px);
+      font-weight: 900;
+      line-height: .91;
+      letter-spacing: -.075em;
+    }
+    .hero h1 span { display: block; color: var(--signal); }
+    .hero .lead { max-width: 710px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+    .button { display: inline-flex; align-items: center; justify-content: space-between; min-width: 190px; padding: 17px 19px; border: 1px solid #514d46; font-size: 13px; transition: background .3s, color .3s, border-color .3s; }
+    .button::after { content: "↗"; margin-left: 25px; font-size: 18px; }
+    .button.primary { color: var(--black); background: var(--signal); border-color: var(--signal); font-weight: 800; }
+    .button:hover { color: var(--black); background: var(--white); border-color: var(--white); }
+    .hero-console { border-top: 1px solid var(--line); }
+    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); }
+    .console-row small { color: #615e58; font: 700 10px "DIN Alternate", sans-serif; letter-spacing: .14em; }
+    .console-row strong { font-size: 15px; line-height: 1.45; }
+    .console-row.bonus strong { color: var(--signal); }
+    .console-row.bonus strong span { display: block; margin-top: 3px; color: #77736c; font-size: 9px; font-weight: 500; letter-spacing: .08em; }
+    .hero-foot { display: flex; justify-content: space-between; margin-top: 84px; padding-top: 16px; border-top: 1px solid var(--line); color: #65615b; font-size: 10px; letter-spacing: .16em; }
+
+    .intro-section { color: var(--black); background: var(--paper); }
+    .intro-section::before { content: "TBN"; position: absolute; right: -3vw; bottom: -6vw; color: rgba(10,10,9,.035); font: 900 31vw/.8 "Arial Black", sans-serif; letter-spacing: -.12em; }
+    .intro-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(55px, 10vw, 155px); }
+    .intro-index { color: var(--signal); font: 900 clamp(80px, 12vw, 170px)/.8 "Arial Black", sans-serif; letter-spacing: -.09em; }
+    .intro-index.about-us { font-size: clamp(42px, 5vw, 72px); line-height: .94; letter-spacing: -.07em; white-space: nowrap; }
+    .intro-kicker { margin-top: 34px; max-width: 300px; color: #5d5952; font-size: 13px; line-height: 1.7; }
+    .intro-copy h2 { font: 900 clamp(38px, 5.3vw, 73px)/1.08 "Songti SC", "STSong", serif; letter-spacing: -.045em; }
+    .intro-copy p { margin-top: 28px; color: #4f4b45; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.95; }
+    .intro-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 50px; border-top: 1px solid var(--ink-line); }
+    .intro-fact { padding: 24px 20px 0 0; }
+    .intro-fact strong { display: block; font: 900 clamp(24px, 2.7vw, 42px)/1 "Songti SC", serif; }
+    .intro-fact span { display: block; margin-top: 10px; color: #6d675e; font-size: 12px; line-height: 1.6; }
+
+    .modes { background: var(--black-2); }
+    .section-head { display: grid; grid-template-columns: 1fr .72fr; gap: 50px; align-items: end; margin-bottom: 58px; }
+    .section-head .display { font-size: clamp(48px, 6.8vw, 94px); }
+    .section-head .lead { justify-self: end; }
+    .mode-shell { display: grid; grid-template-columns: 320px 1fr; min-height: 580px; border: 1px solid var(--line); }
+    .mode-tabs { border-right: 1px solid var(--line); }
+    .mode-tab { width: 100%; min-height: 116px; display: grid; grid-template-columns: 42px 1fr 20px; align-items: center; gap: 8px; padding: 20px 25px; border-bottom: 1px solid var(--line); color: #8f8a82; background: transparent; text-align: left; cursor: pointer; transition: color .3s, background .3s, padding .3s var(--ease); }
+    .mode-tab:last-child { border-bottom: 0; }
+    .mode-tab:hover { color: var(--white); padding-left: 32px; }
+    .mode-tab.active { color: var(--black); background: var(--signal); }
+    .mode-tab small { font: 700 11px "DIN Alternate", sans-serif; }
+    .mode-tab strong { font-size: 21px; }
+    .mode-tab i { font-size: 19px; font-style: normal; }
+    .mode-badge { display: block; width: max-content; margin-top: 7px; padding: 4px 6px; border: 1px solid currentColor; color: var(--signal); font-size: 9px; font-weight: 700; letter-spacing: .05em; }
+    .mode-tab.active .mode-badge { color: var(--black); }
+    .mode-panel { padding: clamp(35px, 6vw, 82px); display: flex; flex-direction: column; justify-content: space-between; }
+    .mode-panel-inner { animation: panel-in .5s var(--ease); }
+    @keyframes panel-in { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: none; } }
+    .mode-panel small { color: var(--signal-soft); font: 700 10px "DIN Alternate", sans-serif; letter-spacing: .22em; }
+    .mode-panel h3 { max-width: 830px; margin: 18px 0 26px; font: 900 clamp(43px, 5.2vw, 74px)/1.02 "Songti SC", serif; letter-spacing: -.055em; }
+    .mode-panel p { max-width: 760px; color: #aaa59d; font-size: 18px; line-height: 1.85; }
+    .mode-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; margin-top: 42px; border-top: 1px solid var(--line); }
+    .mode-item { padding: 17px 0; border-bottom: 1px solid var(--line); color: #dad5cc; font-size: 14px; }
+    .mode-item::before { content: "＋"; margin-right: 11px; color: var(--signal); }
+    .mode-meta { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line); color: #6d6963; font-size: 11px; letter-spacing: .08em; }
+
+    .artist-resources { color: var(--black); background: var(--paper); }
+    .artist-resources .eyebrow { color: var(--black); }
+    .artist-grid { display: grid; grid-template-columns: 1fr .96fr; gap: clamp(40px, 7vw, 100px); align-items: center; }
+    .artist-copy h2 { margin-top: 24px; font: 900 clamp(42px, 4vw, 62px)/1.02 "Songti SC", serif; letter-spacing: -.055em; }
+    .artist-copy p { max-width: 610px; margin-top: 28px; color: rgba(10,10,9,.72); font-size: 18px; line-height: 1.85; }
+    .artist-link { display: inline-flex; align-items: center; justify-content: space-between; min-width: 230px; margin-top: 38px; padding: 17px 19px; color: var(--black); background: var(--signal); font-size: 13px; font-weight: 800; transition: transform .3s var(--ease), background .3s; }
+    .artist-link::after { content: "↗"; margin-left: 30px; font-size: 18px; }
+    .artist-link:hover { color: var(--black); background: var(--white); transform: translateY(-3px); }
+    .artist-link.roster-entry { width: min(300px, 100%); min-width: 0; display: grid; gap: 7px; align-items: start; padding: 15px 17px; color: var(--white); background: #10110c; border-left: 2px solid var(--signal); }
+    .artist-link.roster-entry::after { display: none; }
+    .artist-link.roster-entry small { color: var(--signal); font: 700 9px "DIN Alternate", sans-serif; letter-spacing: .18em; }
+    .artist-link.roster-entry strong { font: 900 20px/1.08 "Songti SC", serif; letter-spacing: -.04em; }
+    .artist-link.roster-entry strong b { color: var(--signal); font-weight: 400; }
+    .artist-link.roster-entry span { color: #bbb5aa; font-size: 11px; line-height: 1.5; }
+    .artist-link.roster-entry:hover { color: var(--white); background: #25231f; border-color: var(--signal); }
+    .artist-roster { min-height: 430px; position: relative; display: grid; overflow: hidden; border: 1px solid rgba(10,10,9,.35); background: #10110c; color: var(--white); isolation: isolate; }
+    .artist-roster::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(10,10,9,.48), transparent 32%, transparent 68%, rgba(10,10,9,.48)), linear-gradient(0deg, rgba(10,10,9,.72), transparent 40%); }
+    .poster-wall { display: grid; align-content: center; gap: 9px; padding: 22px 0; overflow: hidden; }
+    .poster-row { width: max-content; display: flex; will-change: transform; animation: poster-scroll-left 32s linear infinite; }
+    .poster-row.row-right { animation-name: poster-scroll-right; animation-duration: 36s; }
+    .artist-roster:hover .poster-row, .artist-roster:focus-visible .poster-row { animation-play-state: paused; }
+    @keyframes poster-scroll-left { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+    @keyframes poster-scroll-right { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+    .artist-poster { width: 116px; aspect-ratio: 3 / 4; flex: 0 0 auto; position: relative; margin-right: 9px; overflow: hidden; background: #25231f center / cover no-repeat; border: 1px solid rgba(255,255,255,.16); }
+    .artist-poster::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,.16), transparent 48%, rgba(255,77,0,.12)); transition: background .3s; }
+    .artist-poster::after { content: ""; position: absolute; inset: 0; border: 4px solid rgba(10,10,9,.24); }
+    .artist-poster .poster-number, .artist-poster .poster-copy { display: none; }
+    .artist-roster:hover .artist-poster::before { background: linear-gradient(135deg, rgba(0,0,0,.04), transparent 60%, rgba(255,77,0,.04)); }
+    .poster-row:nth-child(1) .artist-poster:nth-child(5n+1) { background-image: url("assets/artists/roster-20260916-brand-new-girl.png"); }
+    .poster-row:nth-child(1) .artist-poster:nth-child(5n+2) { background-image: url("assets/artists/roster-20260916-alpha-x.png"); }
+    .poster-row:nth-child(1) .artist-poster:nth-child(5n+3) { background-image: url("assets/artists/roster-20260916-by.png"); }
+    .poster-row:nth-child(1) .artist-poster:nth-child(5n+4) { background-image: url("assets/artists/roster-20260916-dj-presket.png"); }
+    .poster-row:nth-child(1) .artist-poster:nth-child(5n+5) { background-image: url("assets/artists/roster-20260916-eandk.png"); }
+    .poster-row:nth-child(2) .artist-poster:nth-child(5n+1) { background-image: url("assets/artists/roster-20260916-garry-diamond.png"); }
+    .poster-row:nth-child(2) .artist-poster:nth-child(5n+2) { background-image: url("assets/artists/roster-20260916-kang-sung-hoon.png"); }
+    .poster-row:nth-child(2) .artist-poster:nth-child(5n+3) { background-image: url("assets/artists/roster-20260916-krisha.png"); }
+    .poster-row:nth-child(2) .artist-poster:nth-child(5n+4) { background-image: url("assets/artists/roster-20260916-pickta.png"); }
+    .poster-row:nth-child(2) .artist-poster:nth-child(5n+5) { background-image: url("assets/artists/roster-20260916-epts.png"); }
+    .poster-row:nth-child(3) .artist-poster:nth-child(5n+1) { background-image: url("assets/artists/roster-20260916-suji.png"); }
+    .poster-row:nth-child(3) .artist-poster:nth-child(5n+2) { background-image: url("assets/artists/roster-20260916-teentop.png"); }
+    .poster-row:nth-child(3) .artist-poster:nth-child(5n+3) { background-image: url("assets/artists/roster-20260916-xin.png"); }
+    .poster-row:nth-child(3) .artist-poster:nth-child(5n+4) { background-image: url("assets/artists/roster-20260916-ssream.png"); }
+    .poster-row:nth-child(3) .artist-poster:nth-child(5n+5) { background-image: url("assets/artists/roster-20260916-flay-with-me.png"); }
+
+    .capabilities { color: var(--black); background: var(--paper); }
+    .capabilities .eyebrow { color: var(--signal); }
+    .capability-grid { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 56px; border-top: 1px solid var(--ink-line); }
+    .capability { position: relative; min-height: 280px; padding: 34px 40px 34px 0; border-bottom: 1px solid var(--ink-line); cursor: pointer; }
+    .capability:nth-child(odd) { border-right: 1px solid var(--ink-line); }
+    .capability:nth-child(even) { padding-left: 40px; }
+    .capability-top { display: flex; align-items: start; justify-content: space-between; gap: 25px; }
+    .capability-no { color: var(--signal); font: 900 12px "DIN Alternate", sans-serif; letter-spacing: .13em; }
+    .capability-toggle { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--ink-line); border-radius: 50%; background: transparent; color: var(--black); font-size: 22px; transition: transform .35s, background .35s, color .35s; }
+    .capability h3 { margin-top: 46px; font: 900 clamp(29px, 3.2vw, 46px)/1.05 "Songti SC", serif; letter-spacing: -.035em; }
+    .capability-summary { margin-top: 16px; color: #615c54; font-size: 14px; line-height: 1.7; }
+    .capability-detail { max-height: 0; opacity: 0; overflow: hidden; color: #413e39; font-size: 14px; line-height: 1.85; transition: max-height .5s var(--ease), opacity .35s, margin .5s var(--ease); }
+    .capability.open .capability-detail { max-height: 150px; opacity: 1; margin-top: 22px; }
+    .capability.open .capability-toggle { transform: rotate(45deg); color: var(--white); background: var(--black); }
+
+    .journey { background: var(--signal); color: var(--black); }
+    .journey .eyebrow { color: var(--black); }
+    .journey-head { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: end; }
+    .journey-head p { max-width: 600px; justify-self: end; font-size: 18px; line-height: 1.8; }
+    .journey-line { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 74px; border-top: 2px solid var(--black); }
+    .journey-step { position: relative; min-height: 250px; padding: 28px 20px 20px 0; border-right: 1px solid rgba(10,10,9,.24); }
+    .journey-step:last-child { border-right: 0; }
+    .journey-step::before { content: ""; position: absolute; top: -8px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--black); }
+    .journey-step small { font: 900 11px "DIN Alternate", sans-serif; letter-spacing: .15em; }
+    .journey-step h3 { margin-top: 42px; font: 900 23px/1.15 "Songti SC", serif; }
+    .journey-step p { margin-top: 14px; color: rgba(10,10,9,.7); font-size: 12px; line-height: 1.65; }
+
+    .projects { background: #0e0e0d; }
+    .project-list { margin-top: 60px; border-top: 1px solid var(--line); }
+    .project-card { display: grid; grid-template-columns: 90px minmax(180px, .7fr) 1fr 40px; gap: 24px; align-items: center; min-height: 122px; border-bottom: 1px solid var(--line); transition: background .3s, padding .3s var(--ease); cursor: default; }
+    .project-card:hover { padding: 0 22px; background: #171714; }
+    .project-card .project-no { color: var(--signal); font: 800 11px "DIN Alternate", sans-serif; letter-spacing: .15em; }
+    .project-name strong { display: block; font: 900 clamp(22px, 2.6vw, 38px)/1.1 "Songti SC", serif; }
+    .project-name span { display: block; margin-top: 7px; color: #6f6b65; font-size: 10px; letter-spacing: .14em; }
+    .project-scope { color: #aaa59d; font-size: 14px; line-height: 1.65; }
+    .project-arrow { color: #56524c; font-size: 24px; }
+    .project-stage { margin-top: 24px; display: grid; grid-template-columns: 1.4fr .6fr; gap: 16px; }
+    .photo-slot { position: relative; min-height: 390px; display: flex; align-items: flex-end; padding: 25px; overflow: hidden; border: 1px solid var(--line); background: repeating-linear-gradient(135deg, #141412 0, #141412 14px, #11110f 14px, #11110f 28px); }
+    .photo-slot::before { content: ""; position: absolute; inset: 12px; border: 1px dashed #3d3933; }
+    .photo-slot.tall { min-height: 540px; }
+    .slot-label { position: relative; z-index: 2; }
+    .slot-label strong { display: block; font: 900 clamp(27px, 3.4vw, 48px)/1 "Songti SC", serif; }
+    .slot-label span { display: block; margin-top: 10px; color: #6c6861; font-size: 10px; letter-spacing: .17em; }
+    .replace-note { margin-top: 18px; color: #5f5b55; font-size: 11px; line-height: 1.7; }
+
+    .positioning { color: var(--black); background: var(--paper-2); }
+    .positioning-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(55px, 9vw, 140px); align-items: start; }
+    .positioning-stamp { position: sticky; top: 115px; }
+    .stamp-box { width: min(300px, 100%); aspect-ratio: 1; display: grid; place-items: center; padding: 30px; border: 2px solid var(--black); transform: rotate(-3deg); text-align: center; }
+    .stamp-box strong { font: 900 clamp(32px, 4.5vw, 61px)/.95 "Arial Black", sans-serif; letter-spacing: -.06em; }
+    .stamp-box span { display: block; margin-top: 18px; font-size: 10px; letter-spacing: .22em; }
+    .positioning-copy blockquote { margin: 0; font: 900 clamp(38px, 5.4vw, 74px)/1.11 "Songti SC", serif; letter-spacing: -.045em; }
+    .positioning-copy blockquote em { color: var(--signal); font-style: normal; }
+    .positioning-copy p { margin-top: 38px; color: #514d46; font-size: 18px; line-height: 1.9; }
+    .positioning-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 35px; }
+    .positioning-tags span { padding: 10px 14px; border: 1px solid rgba(10,10,9,.28); font-size: 12px; }
+
+    .contact { min-height: 88svh; display: flex; align-items: center; background: var(--black); }
+    .contact::after { content: "TBN"; position: absolute; right: -2vw; bottom: -7vw; color: rgba(255,255,255,.025); font: 900 35vw/.8 "Arial Black", sans-serif; letter-spacing: -.12em; }
+    .contact h2 { max-width: 1100px; margin: 24px 0 52px; font: 900 clamp(54px, 8.4vw, 126px)/.93 "Songti SC", serif; letter-spacing: -.07em; }
+    .contact h2 em { color: var(--signal); font-style: normal; }
+    .contact-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .contact-grid p { max-width: 630px; color: #9b968d; font-size: 17px; line-height: 1.8; }
+    .contact-details { display: grid; gap: 10px; justify-self: end; min-width: 320px; }
+    .contact-details strong { font-size: 16px; }
+    .contact-details span { color: #aaa59d; font-size: 13px; }
+    .contact-details small { color: #5d5953; font-size: 11px; }
+    .footer { display: flex; justify-content: space-between; gap: 30px; padding: 25px clamp(22px, 6vw, 96px); border-top: 1px solid var(--line); color: #5e5a54; font-size: 10px; letter-spacing: .09em; }
+
+    @media (max-width: 980px) {
+      .nav-links { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 80px 35px; gap: 18px; color: var(--white); background: rgba(10,10,9,.98); font-size: 23px; transform: translateX(100%); transition: transform .45s var(--ease); }
+      .menu-open .nav-links { transform: none; }
+      .menu-toggle { position: relative; z-index: 2; display: block; }
+      .menu-open .menu-toggle span:first-child { transform: translateY(3.5px) rotate(45deg); }
+      .menu-open .menu-toggle span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+      .hero-grid, .intro-grid, .section-head, .journey-head, .positioning-grid, .contact-grid { grid-template-columns: 1fr; }
+      .artist-grid { grid-template-columns: 1fr; }
+      .hero-console { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 55px; }
+      .console-row { grid-template-columns: 1fr; align-content: center; gap: 8px; padding: 14px; border-right: 1px solid var(--line); }
+      .console-row:last-child { border-right: 0; }
+      .section-head .lead, .journey-head p { justify-self: start; }
+      .journey-line { grid-template-columns: repeat(3, 1fr); }
+      .journey-step:nth-child(3) { border-right: 0; }
+      .journey-step:nth-child(n+4) { border-top: 1px solid rgba(10,10,9,.25); }
+      .journey-step:nth-child(n+4)::before { display: none; }
+      .positioning-stamp { position: static; }
+      .stamp-box { width: 220px; }
+      .contact-details { justify-self: start; }
+    }
+
+    @media (max-width: 680px) {
+      .nav { height: 68px; padding: 0 18px; }
+      .brand-mark { width: 38px; height: 38px; }
+      .brand-text span { display: none; }
+      .section { padding: 92px 20px; }
+      .hero { padding-top: 112px; padding-bottom: 30px; }
+      .hero h1 { font-size: clamp(54px, 16vw, 76px); }
+      .hero-actions { display: grid; }
+      .button { width: 100%; }
+      .hero-console { grid-template-columns: 1fr; }
+      .console-row { min-height: 68px; grid-template-columns: 62px 1fr; border-right: 0; }
+      .hero-foot { margin-top: 44px; gap: 20px; }
+      .hero-foot span:last-child { text-align: right; }
+      .intro-index { font-size: 88px; }
+      .intro-facts { grid-template-columns: 1fr; }
+      .intro-fact { padding-bottom: 20px; border-bottom: 1px solid var(--ink-line); }
+      .mode-shell { grid-template-columns: 1fr; }
+      .mode-tabs { display: grid; grid-template-columns: repeat(2, 1fr); border-right: 0; border-bottom: 1px solid var(--line); }
+      .mode-tab { min-height: 100px; grid-template-columns: 1fr; gap: 5px; padding: 16px 12px; border-right: 1px solid var(--line); border-bottom: 0; }
+      .mode-tab:nth-child(even) { border-right: 0; }
+      .mode-tab:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+      .mode-tab:hover { padding-left: 12px; }
+      .mode-tab i { display: none; }
+      .mode-tab strong { font-size: 15px; }
+      .artist-roster { min-height: 350px; }
+      .artist-poster { width: 92px; margin-right: 7px; padding: 8px; }
+      .poster-wall { gap: 7px; padding: 17px 0; }
+      .mode-list, .capability-grid { grid-template-columns: 1fr; }
+      .capability { min-height: 230px; padding: 27px 0 !important; border-right: 0 !important; }
+      .capability h3 { margin-top: 30px; }
+      .journey-line { grid-template-columns: 1fr 1fr; }
+      .journey-step { min-height: 205px; }
+      .journey-step:nth-child(2), .journey-step:nth-child(4) { border-right: 0; }
+      .journey-step:nth-child(3) { border-right: 1px solid rgba(10,10,9,.24); }
+      .journey-step:nth-child(n+3) { border-top: 1px solid rgba(10,10,9,.25); }
+      .journey-step:nth-child(n+3)::before { display: none; }
+      .project-card { grid-template-columns: 45px 1fr 24px; gap: 12px; padding: 18px 0; }
+      .project-card:hover { padding: 18px 10px; }
+      .project-scope { grid-column: 2 / span 2; }
+      .project-stage { grid-template-columns: 1fr; }
+      .photo-slot, .photo-slot.tall { min-height: 330px; }
+      .contact-details { min-width: 0; }
+      .footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="nav" id="nav">
+    <a class="brand" href="#home" aria-label="返回首页">
+      <span class="brand-mark">TBN</span>
+      <span class="brand-text"><strong>TBN 实验室</strong><span>NIGHT ECONOMY PROJECT SERVICE</span></span>
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#home">首页介绍</a>
+      <a href="#about">团队介绍</a>
+      <a href="#modes">五项服务</a>
+      <a href="#artists">签约艺人</a>
+      <a href="#projects">项目案例</a>
+      <a class="nav-cta" href="#contact">合作联系</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="section hero" id="home">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow reveal">Night Economy · Bar · Entertainment</div>
+            <h1 class="reveal">让夜场项目<br><span>从想法到经营</span></h1>
+            <p class="lead reveal">TBN实验室面向投资人、项目甲方及酒吧经营者，提供夜经济娱乐及酒吧项目的全案交付、项目指导、项目陪跑、品牌设计外包与经营数据分析。</p>
+            <div class="hero-actions reveal">
+              <a class="button primary" href="#modes">查看合作方式</a>
+              <a class="button" href="#projects">查看项目案例</a>
+            </div>
+          </div>
+          <aside class="hero-console reveal" aria-label="服务摘要">
+            <div class="console-row"><small>01 / MODE</small><strong>全案交付</strong></div>
+            <div class="console-row"><small>02 / MODE</small><strong>项目指导</strong></div>
+            <div class="console-row"><small>03 / MODE</small><strong>项目陪跑</strong></div>
+            <div class="console-row"><small>04 / MODE</small><strong>品牌设计外包</strong></div>
+            <div class="console-row bonus"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></div>
+          </aside>
+        </div>
+        <div class="hero-foot reveal"><span>由深圳龙洙传媒有限公司创办</span><span>SCROLL TO EXPLORE ↓</span></div>
+      </div>
+    </section>
+
+    <section class="section intro-section" id="about">
+      <div class="wrap intro-grid">
+        <div class="reveal">
+          <div class="intro-index about-us">ABOUT US</div>
+          <p class="intro-kicker">不是只提供一份方案，而是站在项目整体经营的角度，连接定位、产品、空间、团队与市场。</p>
+        </div>
+        <div class="intro-copy">
+          <div class="eyebrow reveal">Who we are / 我们是谁</div>
+          <h2 class="reveal">深耕夜经济娱乐及酒吧行业的项目服务团队</h2>
+          <p class="reveal">在夜经济及酒吧领域，我们结合行业资源、项目经验与TBN内容品牌矩阵，为合作方提供从项目产品定位设定、方案策划、空间及品牌设计，到施工统筹、开业筹备技术指导、项目指导与项目陪跑的综合服务。</p>
+          <div class="intro-facts reveal">
+            <div class="intro-fact"><strong>0—1</strong><span>新项目从定位、筹建到开业</span></div>
+            <div class="intro-fact"><strong>1—N</strong><span>经营中项目调整与持续优化</span></div>
+            <div class="intro-fact"><strong>全周期</strong><span>全案交付、项目指导与项目陪跑</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section modes" id="modes">
+      <div class="wrap">
+        <header class="section-head">
+          <div><div class="eyebrow reveal">Our services / 五项服务</div><h2 class="display reveal">按项目需要，<br><em>选择介入深度</em></h2></div>
+          <p class="lead reveal">项目所处阶段不同，需要的不是同一套答案。我们根据目标、现状与团队基础，匹配相应的合作方式。</p>
+        </header>
+        <div class="mode-shell reveal">
+          <div class="mode-tabs" role="tablist" aria-label="合作方式">
+            <button class="mode-tab active" type="button" role="tab" aria-selected="true" data-mode="delivery"><small>01</small><strong>全案交付</strong><i>→</i></button>
+            <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="consult"><small>02</small><strong>项目指导</strong><i>→</i></button>
+            <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="coach"><small>03</small><strong>项目陪跑</strong><i>→</i></button>
+            <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="design"><small>04</small><strong>品牌设计外包</strong><i>→</i></button>
+            <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="analytics"><small>05</small><strong>经营数据分析<span class="mode-badge">项目指导 / 项目陪跑附赠</span></strong><i>→</i></button>
+          </div>
+          <div class="mode-panel" id="mode-panel" role="tabpanel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section artist-resources" id="artists">
+      <div class="wrap artist-grid">
+        <div class="artist-copy">
+          <div class="eyebrow reveal">Signed artists / 签约艺人资源</div>
+          <h2 class="reveal">项目服务之外，<br>我们也有自己的<br>签约艺人资源。</h2>
+          <p class="reveal">TBN拥有签约艺人资源，并设有独立艺人展示平台。可结合酒吧、夜经济娱乐、音乐活动及商业合作的实际需求，提供艺人演出合作、项目联动与资源匹配。</p>
+          <a class="artist-link roster-entry reveal" href="../artists/index.html" target="_blank" rel="noopener"><small>TBN ARTIST ROSTER</small><strong>查看签约艺人<br>与合作方向 <b>↗</b></strong><span>艺人资料 · 演出合作 · 商业合作</span></a>
+        </div>
+        <a class="artist-roster reveal" href="../artists/index.html" target="_blank" rel="noopener" aria-label="进入独立艺人网站，查看签约艺人阵容">
+          <span class="poster-wall" aria-hidden="true">
+            <span class="poster-row row-right"><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span></span>
+            <span class="poster-row"><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span></span>
+            <span class="poster-row row-right"><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span><span class="artist-poster"></span></span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="wrap">
+        <header class="section-head">
+          <div><div class="eyebrow reveal">Selected projects / 项目展示</div><h2 class="display reveal">用真实项目，<br><em>说明我们做过什么</em></h2></div>
+          <p class="lead reveal">以下为版式占位。后续替换为真实项目名称、城市、合作身份、负责范围与现场图片，不使用未经确认的成果数据。</p>
+        </header>
+        <div class="project-list reveal">
+          <article class="project-card"><span class="project-no">CASE 01</span><div class="project-name"><strong>项目名称 A</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
+          <article class="project-card"><span class="project-no">CASE 02</span><div class="project-name"><strong>项目名称 B</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
+          <article class="project-card"><span class="project-no">CASE 03</span><div class="project-name"><strong>项目名称 C</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
+        </div>
+        <div class="project-stage reveal">
+          <figure class="photo-slot tall"><figcaption class="slot-label"><strong>项目主视觉 / 空间全景</strong><span>PHOTO SLOT · 建议横版 16:10</span></figcaption></figure>
+          <figure class="photo-slot"><figcaption class="slot-label"><strong>现场细节 / 团队执行</strong><span>PHOTO SLOT · 建议竖版 4:5</span></figcaption></figure>
+        </div>
+        <p class="replace-note reveal">图片位置已预留。后续可根据项目素材调整为：空间全景、舞台现场、开业活动、团队工作照或改造前后对比。</p>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="eyebrow reveal">Start a project / 项目合作</div>
+        <h2 class="reveal">先把项目情况<br><em>说清楚</em></h2>
+        <div class="contact-grid reveal">
+          <p>如果您正在筹备新的夜经济娱乐或酒吧项目，或现有项目需要重新定位与经营优化，欢迎与我们沟通项目所在城市、当前阶段、投资目标及核心问题。</p>
+          <div class="contact-details"><strong>TBN实验室 × 深圳龙洙传媒有限公司</strong><span>项目联系人：金会杰</span><small>电话 / 微信 / 邮箱：正式发布前补充</small></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>© TBN LAB · NIGHT ECONOMY PROJECT SERVICE</span><span>当前为内容与视觉工作版，图片及项目信息待补充</span></footer>
+
+  <script>
+    const modeData = {
+      delivery: {
+        en: 'FULL-SCOPE DELIVERY',
+        title: '从定位到开业，统筹完整项目链路',
+        description: '适合希望由专业团队统筹整体项目的投资人与项目甲方。根据双方确认的范围，整合设计、施工、供应及娱乐资源，推进项目从方案到落地。',
+        items: ['项目产品定位设定', '品牌及空间设计协同', '施工与供应商统筹', '舞台声光及娱乐内容', '签约艺人及演出资源对接', '开业筹备技术指导'],
+        meta: '适合：新项目筹建、整体升级，或需要统一协调多专业资源的项目'
+      },
+      consult: {
+        en: 'PROJECT GUIDANCE',
+        title: '明确项目方向，指导关键节点',
+        description: '适合正在筹备、准备改造或经营遇到瓶颈的项目。围绕项目定位、产品策划、筹建或经营问题，提供专业判断、方案建议与关键节点指导，由甲方团队组织执行。',
+        items: ['市场与项目条件分析', '经营问题诊断', '项目定位与方向建议', '产品及运营优化', '团队沟通与管理建议', '阶段复盘与决策支持'],
+        meta: '适合：需要专业判断、方向校准或专项问题解决的项目 · 赠送基础经营数据分析'
+      },
+      coach: {
+        en: 'PROJECT ACCOMPANIMENT',
+        title: '与团队一起，把方案变成现场结果',
+        description: '适合已有执行团队，但需要持续专业支持的项目。围绕既定目标推进方案落地、团队协同、开业筹备及经营调整。',
+        items: ['项目推进计划', '重点事项持续跟进', '产品定位调整', '活动及视觉输出调整', '团队执行协同', '经营反馈与阶段复盘', '高管培训与全员培训', '签约艺人资源协同'],
+        meta: '适合：具备基础团队，希望在筹建或经营阶段持续获得外部支持的项目 · 赠送基础经营数据分析；人才引进仅面向项目陪跑客户，按需协助'
+      },
+      design: {
+        en: 'BRAND DESIGN OUTSOURCING',
+        title: '独立设计需求，也可以单项合作',
+        description: '适合已有经营与执行团队，但需要品牌视觉或日常宣传设计支持的项目。可根据实际需求提供单项设计或阶段性品牌设计外包服务。',
+        items: ['品牌视觉系统定制', '基础品牌物料设计', '开业主视觉定制', '动态视觉包装', '日常宣传物料设计'],
+        meta: '适合：新品牌建立、视觉升级、开业宣传或日常设计需求'
+      },
+      analytics: {
+        en: 'OPERATION DATA ANALYSIS',
+        title: '让经营判断建立在真实数据上',
+        description: '通过项目现有经营数据与现场情况，分析营收结构、时段表现、产品销售、客户消费与团队转化等问题，为下一步经营调整提供判断依据。',
+        items: ['营收与销售结构分析', '时段及场次表现分析', '产品与价格表现分析', '客户消费结构观察', '营销及团队转化分析', '经营问题与调整建议'],
+        meta: '服务说明：签约项目指导或项目陪跑，赠送基础经营数据分析；其他项目可单独合作，具体范围以合作方案为准'
+      }
+    };
+
+    const modePanel = document.querySelector('#mode-panel');
+    const modeTabs = [...document.querySelectorAll('.mode-tab')];
+
+    function renderMode(key) {
+      const mode = modeData[key];
+      modePanel.innerHTML = `
+        <div class="mode-panel-inner">
+          <small>${mode.en}</small>
+          <h3>${mode.title}</h3>
+          <p>${mode.description}</p>
+          <div class="mode-list">${mode.items.map(item => `<div class="mode-item">${item}</div>`).join('')}</div>
+          <div class="mode-meta">${mode.meta}</div>
+        </div>`;
+      modeTabs.forEach(tab => {
+        const active = tab.dataset.mode === key;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+    }
+
+    modeTabs.forEach(tab => tab.addEventListener('click', () => renderMode(tab.dataset.mode)));
+    renderMode('delivery');
+
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: .12 });
+    sections.forEach(section => observer.observe(section));
+
+    const nav = document.querySelector('#nav');
+    const progress = document.querySelector('.progress');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${height > 0 ? (window.scrollY / height) * 100 : 0}%`;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    menuToggle.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight;
+      window.history.pushState(null, '', link.getAttribute('href'));
+      window.scrollTo({ top, behavior: 'smooth' });
+      document.body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>
