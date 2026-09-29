@@ -2302,33 +2302,45 @@
       const closingSection = document.querySelector(".closing");
       let timelineGroupOpen = false;
       let projectGroupOpen = false;
-      let timelineOpenTimers = [];
-      const clearTimelineOpenTimers = () => {
-        timelineOpenTimers.forEach((timer) => clearTimeout(timer));
-        timelineOpenTimers = [];
+      let timelineTimers = [];
+      let projectTimers = [];
+      const clearTimers = (timers) => {
+        timers.forEach((timer) => clearTimeout(timer));
+      };
+      const stageCards = (cards, setCardState, open, delay, timers) => {
+        cards.forEach((card, index) => {
+          timers.push(
+            setTimeout(() => setCardState(card, open), index * delay),
+          );
+        });
       };
       const setTimelineGroupOpen = (open) => {
         if (timelineGroupOpen === open) return;
         timelineGroupOpen = open;
-        clearTimelineOpenTimers();
-        if (!open) {
-          timelineCards.forEach((card) => setTimelineCardOpen(card, false));
-          return;
-        }
-        timelineCards.forEach((card, index) => {
-          timelineOpenTimers.push(
-            setTimeout(() => {
-              if (timelineGroupOpen && compactViewport.matches) {
-                setTimelineCardOpen(card, true);
-              }
-            }, index * 150),
-          );
-        });
+        clearTimers(timelineTimers);
+        timelineTimers = [];
+        // 时间轴无论展开还是收起，都由顶部开始依次推进。
+        stageCards(
+          timelineCards,
+          setTimelineCardOpen,
+          open,
+          open ? 180 : 140,
+          timelineTimers,
+        );
       };
       const setProjectGroupOpen = (open) => {
         if (projectGroupOpen === open) return;
         projectGroupOpen = open;
-        projectCards.forEach((card) => setProjectCardOpen(card, open));
+        clearTimers(projectTimers);
+        projectTimers = [];
+        // 项目进入视野时从上向下铺开；结语出现时由下向上让位。
+        stageCards(
+          open ? projectCards : [...projectCards].reverse(),
+          setProjectCardOpen,
+          open,
+          open ? 180 : 140,
+          projectTimers,
+        );
       };
       let mobileScrollTicking = false;
       const syncMobileSectionStates = () => {
