@@ -336,6 +336,9 @@
         letter-spacing: -0.09em;
         line-height: 1.02;
       }
+      .closing-mobile-break {
+        display: none;
+      }
       .history-note {
         max-width: 320px;
         margin: 0 0 6px;
@@ -1491,6 +1494,16 @@
         .case-row img.landscape {
           width: 164px;
         }
+        .case-syndrome .case-row img {
+          width: calc(18.75vw - 7.5px);
+        }
+        .case-syndrome .case-row img.landscape {
+          width: calc(42.1875vw - 16.875px);
+        }
+        .case-babi .case-row img,
+        .case-babi .case-row img.landscape {
+          width: calc(37.5vw - 15px);
+        }
         .case-description {
           font-size: 13px;
         }
@@ -1500,6 +1513,10 @@
         .closing h2 {
           margin-bottom: 48px;
           font-size: 58px;
+        }
+        .closing-mobile-break {
+          display: block;
+          height: 0.5em;
         }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -1832,7 +1849,7 @@
             </p>
           </div>
           <div class="case-list">
-            <article class="case reveal" data-project-card>
+            <article class="case case-syndrome reveal" data-project-card>
               <button class="case-trigger" type="button" aria-expanded="false">
                 <h3 class="case-title">星德罗</h3>
                 <p class="case-brief">
@@ -1902,7 +1919,7 @@
                 </div>
               </div>
             </article>
-            <article class="case reveal" data-project-card>
+            <article class="case case-babi reveal" data-project-card>
               <button class="case-trigger" type="button" aria-expanded="false">
                 <h3 class="case-title">Babi Room</h3>
                 <p class="case-brief">
@@ -2159,7 +2176,11 @@
           <h2 id="closing-title">
             把市场判断，变成现场里可执行、可复盘的品牌产品。
           </h2>
-          <p>开酒吧，找 TBN 实验室。金老师，是提高项目成功率的保障。</p>
+          <p>
+            开酒吧，找 TBN 实验室。<br
+              class="closing-mobile-break"
+            />金老师是提高项目成功率的保障。
+          </p>
         </div>
       </section>
     </main>
@@ -2235,31 +2256,101 @@
             row.append(duplicate);
           });
         });
-      document.querySelectorAll("[data-timeline-card]").forEach((card) => {
+      const timelineCards = [
+        ...document.querySelectorAll("[data-timeline-card]"),
+      ];
+      const setTimelineCardOpen = (card, open) => {
+        const trigger = card.querySelector(".evidence-trigger");
+        card.classList.toggle("is-open", open);
+        trigger.setAttribute("aria-expanded", String(open));
+      };
+      timelineCards.forEach((card) => {
         const trigger = card.querySelector(".evidence-trigger");
         trigger.addEventListener("click", () => {
           const open = !card.classList.contains("is-open");
-          card.classList.toggle("is-open", open);
-          trigger.setAttribute("aria-expanded", String(open));
+          setTimelineCardOpen(card, open);
         });
       });
-      document.querySelectorAll("[data-project-card]").forEach((card) => {
+      const compactViewport = matchMedia("(max-width: 780px)");
+      let compactTimelineObserver;
+      const syncCompactTimeline = () => {
+        compactTimelineObserver?.disconnect();
+        if (
+          !compactViewport.matches ||
+          typeof IntersectionObserver !== "function"
+        ) {
+          return;
+        }
+        compactTimelineObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const card = entry.target;
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.22) {
+                timelineCards.forEach((otherCard) => {
+                  if (otherCard !== card) setTimelineCardOpen(otherCard, false);
+                });
+                setTimelineCardOpen(card, true);
+              } else if (!entry.isIntersecting) {
+                setTimelineCardOpen(card, false);
+              }
+            });
+          },
+          { threshold: [0, 0.22, 0.5], rootMargin: "-18% 0px -36% 0px" },
+        );
+        timelineCards.forEach((card) => compactTimelineObserver.observe(card));
+      };
+      compactViewport.addEventListener("change", syncCompactTimeline);
+      syncCompactTimeline();
+      const projectCards = [
+        ...document.querySelectorAll("[data-project-card]"),
+      ];
+      const setProjectCardOpen = (card, open) => {
         const trigger = card.querySelector(".case-trigger");
-        const inlineVideo = card.querySelector(".case-video");
+        card.classList.toggle("is-open", open);
+        trigger.setAttribute("aria-expanded", String(open));
+        if (!open) card.querySelector(".case-video")?.pause();
+      };
+      projectCards.forEach((card) => {
+        const trigger = card.querySelector(".case-trigger");
         trigger.addEventListener("click", () => {
           const open = !card.classList.contains("is-open");
-          card.classList.toggle("is-open", open);
-          trigger.setAttribute("aria-expanded", String(open));
-          if (!open) inlineVideo?.pause();
+          setProjectCardOpen(card, open);
         });
-        if (inlineVideo) {
+        if (card.querySelector(".case-video")) {
           card.addEventListener("mouseleave", () => {
-            inlineVideo.pause();
-            card.classList.remove("is-open");
-            trigger.setAttribute("aria-expanded", "false");
+            setProjectCardOpen(card, false);
           });
         }
       });
+      let compactProjectObserver;
+      const syncCompactProjects = () => {
+        compactProjectObserver?.disconnect();
+        if (
+          !compactViewport.matches ||
+          typeof IntersectionObserver !== "function"
+        ) {
+          return;
+        }
+        compactProjectObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const card = entry.target;
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
+                projectCards.forEach((otherCard) => {
+                  if (otherCard !== card) setProjectCardOpen(otherCard, false);
+                });
+                setProjectCardOpen(card, true);
+              } else if (!entry.isIntersecting) {
+                setProjectCardOpen(card, false);
+              }
+            });
+          },
+          { threshold: [0, 0.18, 0.45], rootMargin: "-16% 0px -28% 0px" },
+        );
+        projectCards.forEach((card) => compactProjectObserver.observe(card));
+      };
+      compactViewport.addEventListener("change", syncCompactProjects);
+      syncCompactProjects();
       const videoDialog = document.querySelector("[data-project-video-dialog]");
       const projectVideo = document.querySelector(
         "[data-project-video-element]",
