@@ -2296,9 +2296,9 @@
           });
         }
       });
-      const historySection = document.querySelector(".history");
+      const historyTitle = document.querySelector("#history-title");
       const historyFeature = document.querySelector(".history-feature");
-      const casesSection = document.querySelector(".cases");
+      const casesTitle = document.querySelector("#cases-title");
       const closingSection = document.querySelector(".closing");
       let timelineGroupOpen = false;
       let projectGroupOpen = false;
@@ -2319,9 +2319,9 @@
         timelineGroupOpen = open;
         clearTimers(timelineTimers);
         timelineTimers = [];
-        // 时间轴无论展开还是收起，都由顶部开始依次推进。
+        // 时间轴展开由上向下；培训将进入视野时则从下向上回收。
         stageCards(
-          timelineCards,
+          open ? timelineCards : [...timelineCards].reverse(),
           setTimelineCardOpen,
           open,
           open ? 180 : 140,
@@ -2350,15 +2350,14 @@
           setProjectGroupOpen(false);
           return;
         }
-        const timelineFocusLine = innerHeight * 0.55;
-        const timelineCloseLine = innerHeight * 0.48;
-        const projectFocusLine = innerHeight * 0.55;
+        const titleFocusLine = innerHeight * 0.33;
+        const timelineCloseLine = innerHeight * 0.85;
         const projectCloseLine = innerHeight * 0.85;
         const shouldOpenTimeline =
-          historySection.getBoundingClientRect().top <= timelineFocusLine &&
+          historyTitle.getBoundingClientRect().top <= titleFocusLine &&
           historyFeature.getBoundingClientRect().top > timelineCloseLine;
         const shouldOpenProjects =
-          casesSection.getBoundingClientRect().top <= projectFocusLine &&
+          casesTitle.getBoundingClientRect().top <= titleFocusLine &&
           closingSection.getBoundingClientRect().top > projectCloseLine;
         setTimelineGroupOpen(shouldOpenTimeline);
         setProjectGroupOpen(shouldOpenProjects);
