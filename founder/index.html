@@ -2267,40 +2267,12 @@
       timelineCards.forEach((card) => {
         const trigger = card.querySelector(".evidence-trigger");
         trigger.addEventListener("click", () => {
+          if (compactViewport.matches) return;
           const open = !card.classList.contains("is-open");
           setTimelineCardOpen(card, open);
         });
       });
       const compactViewport = matchMedia("(max-width: 780px)");
-      let compactTimelineObserver;
-      const syncCompactTimeline = () => {
-        compactTimelineObserver?.disconnect();
-        if (
-          !compactViewport.matches ||
-          typeof IntersectionObserver !== "function"
-        ) {
-          return;
-        }
-        compactTimelineObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const card = entry.target;
-              if (entry.isIntersecting && entry.intersectionRatio >= 0.22) {
-                timelineCards.forEach((otherCard) => {
-                  if (otherCard !== card) setTimelineCardOpen(otherCard, false);
-                });
-                setTimelineCardOpen(card, true);
-              } else if (!entry.isIntersecting) {
-                setTimelineCardOpen(card, false);
-              }
-            });
-          },
-          { threshold: [0, 0.22, 0.5], rootMargin: "-18% 0px -36% 0px" },
-        );
-        timelineCards.forEach((card) => compactTimelineObserver.observe(card));
-      };
-      compactViewport.addEventListener("change", syncCompactTimeline);
-      syncCompactTimeline();
       const projectCards = [
         ...document.querySelectorAll("[data-project-card]"),
       ];
@@ -2313,44 +2285,80 @@
       projectCards.forEach((card) => {
         const trigger = card.querySelector(".case-trigger");
         trigger.addEventListener("click", () => {
+          if (compactViewport.matches) return;
           const open = !card.classList.contains("is-open");
           setProjectCardOpen(card, open);
         });
         if (card.querySelector(".case-video")) {
           card.addEventListener("mouseleave", () => {
+            if (compactViewport.matches) return;
             setProjectCardOpen(card, false);
           });
         }
       });
-      let compactProjectObserver;
-      const syncCompactProjects = () => {
-        compactProjectObserver?.disconnect();
-        if (
-          !compactViewport.matches ||
-          typeof IntersectionObserver !== "function"
-        ) {
+      const historySection = document.querySelector(".history");
+      const historyFeature = document.querySelector(".history-feature");
+      const casesSection = document.querySelector(".cases");
+      const closingSection = document.querySelector(".closing");
+      let timelineGroupOpen = false;
+      let projectGroupOpen = false;
+      let timelineOpenTimers = [];
+      const clearTimelineOpenTimers = () => {
+        timelineOpenTimers.forEach((timer) => clearTimeout(timer));
+        timelineOpenTimers = [];
+      };
+      const setTimelineGroupOpen = (open) => {
+        if (timelineGroupOpen === open) return;
+        timelineGroupOpen = open;
+        clearTimelineOpenTimers();
+        if (!open) {
+          timelineCards.forEach((card) => setTimelineCardOpen(card, false));
           return;
         }
-        compactProjectObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const card = entry.target;
-              if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
-                projectCards.forEach((otherCard) => {
-                  if (otherCard !== card) setProjectCardOpen(otherCard, false);
-                });
-                setProjectCardOpen(card, true);
-              } else if (!entry.isIntersecting) {
-                setProjectCardOpen(card, false);
+        timelineCards.forEach((card, index) => {
+          timelineOpenTimers.push(
+            setTimeout(() => {
+              if (timelineGroupOpen && compactViewport.matches) {
+                setTimelineCardOpen(card, true);
               }
-            });
-          },
-          { threshold: [0, 0.18, 0.45], rootMargin: "-16% 0px -28% 0px" },
-        );
-        projectCards.forEach((card) => compactProjectObserver.observe(card));
+            }, index * 150),
+          );
+        });
       };
-      compactViewport.addEventListener("change", syncCompactProjects);
-      syncCompactProjects();
+      const setProjectGroupOpen = (open) => {
+        if (projectGroupOpen === open) return;
+        projectGroupOpen = open;
+        projectCards.forEach((card) => setProjectCardOpen(card, open));
+      };
+      let mobileScrollTicking = false;
+      const syncMobileSectionStates = () => {
+        mobileScrollTicking = false;
+        if (!compactViewport.matches) {
+          setTimelineGroupOpen(false);
+          setProjectGroupOpen(false);
+          return;
+        }
+        const timelineFocusLine = innerHeight * 0.55;
+        const timelineCloseLine = innerHeight * 0.48;
+        const projectFocusLine = innerHeight * 0.55;
+        const projectCloseLine = innerHeight * 0.85;
+        const shouldOpenTimeline =
+          historySection.getBoundingClientRect().top <= timelineFocusLine &&
+          historyFeature.getBoundingClientRect().top > timelineCloseLine;
+        const shouldOpenProjects =
+          casesSection.getBoundingClientRect().top <= projectFocusLine &&
+          closingSection.getBoundingClientRect().top > projectCloseLine;
+        setTimelineGroupOpen(shouldOpenTimeline);
+        setProjectGroupOpen(shouldOpenProjects);
+      };
+      const requestMobileSectionSync = () => {
+        if (mobileScrollTicking) return;
+        mobileScrollTicking = true;
+        requestAnimationFrame(syncMobileSectionStates);
+      };
+      addEventListener("scroll", requestMobileSectionSync, { passive: true });
+      compactViewport.addEventListener("change", requestMobileSectionSync);
+      requestMobileSectionSync();
       const videoDialog = document.querySelector("[data-project-video-dialog]");
       const projectVideo = document.querySelector(
         "[data-project-video-element]",
