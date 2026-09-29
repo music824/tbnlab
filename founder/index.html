@@ -2126,13 +2126,15 @@
                       <img src="assets/projects/oscar/scene-12.jpg" alt="" />
                     </div>
                   </div>
-                  <a
+                  <button
                     class="case-play"
-                    href="#oscar-video"
-                    aria-label="播放 Dr.Oscar 品牌属性视频"
+                    type="button"
+                    data-project-video="assets/video/dr-oscar-brand.mp4"
+                    data-project-title="Dr.Oscar · 品牌属性视频"
+                    onclick="openProjectVideo(this, event)"
                   >
                     PLAY ME
-                  </a>
+                  </button>
                 </div>
               </div>
             </article>
@@ -2197,7 +2199,14 @@
       role="dialog"
       hidden
     >
-      <a class="video-close" aria-label="关闭视频" href="#cases"> × </a>
+      <button
+        class="video-close"
+        type="button"
+        aria-label="关闭视频"
+        onclick="closeProjectVideo()"
+      >
+        ×
+      </button>
       <video
         controls
         playsinline
