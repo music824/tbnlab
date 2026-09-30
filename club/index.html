@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="TBN实验室夜经济娱乐及酒吧项目服务介绍：全案交付、项目指导、项目陪跑、品牌设计外包与经营数据分析。">
   <meta name="theme-color" content="#0a0a09">
-  <script>try{if(sessionStorage.getItem('tbn-route-enter')==='1')document.documentElement.classList.add('tbn-route-enter');}catch(e){}</script>
-  <style>html.tbn-route-enter body{opacity:0;transform:translate3d(0,10px,0)}body{transition:opacity .52s cubic-bezier(.16,.84,.2,1),transform .64s cubic-bezier(.16,.84,.2,1);will-change:opacity,transform}</style>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ff4d00'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial' font-weight='900' font-size='22' fill='%230a0a09'%3ETBN%3C/text%3E%3C/svg%3E">
   <title>TBN实验室｜夜经济娱乐及酒吧项目服务</title>
   <style>
@@ -158,12 +156,9 @@
     .button.primary { color: var(--black); background: var(--signal); border-color: var(--signal); font-weight: 800; }
     .button:hover { color: var(--black); background: var(--white); border-color: var(--white); }
     .hero-console { border-top: 1px solid var(--line); }
-    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; transition: color .45s ease, background-color .45s ease, transform .45s cubic-bezier(.22, 1, .36, 1); }
+    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); }
     .console-row small { color: #615e58; font: 700 10px "DIN Alternate", sans-serif; letter-spacing: .14em; }
     .console-row strong { font-size: 15px; line-height: 1.45; }
-    .console-row:hover, .console-row:focus-visible { color: var(--signal); background: linear-gradient(90deg, rgba(255, 77, 0, .12), transparent 76%); transform: translateX(8px); }
-    .console-row:hover small, .console-row:focus-visible small { color: var(--signal); }
-    .console-row:focus-visible { outline: 1px solid var(--signal); outline-offset: -1px; }
     .console-row.bonus strong { color: var(--signal); }
     .console-row.bonus strong span { display: block; margin-top: 3px; color: #77736c; font-size: 9px; font-weight: 500; letter-spacing: .08em; }
     .hero-foot { display: flex; justify-content: space-between; margin-top: 84px; padding-top: 16px; border-top: 1px solid var(--line); color: #65615b; font-size: 10px; letter-spacing: .16em; }
@@ -280,21 +275,34 @@
 
     .projects { background: #0e0e0d; }
     .project-list { margin-top: 60px; border-top: 1px solid var(--line); }
-    .project-card { display: grid; grid-template-columns: 90px minmax(180px, .7fr) 1fr 40px; gap: 24px; align-items: center; min-height: 122px; border-bottom: 1px solid var(--line); transition: background .3s, padding .3s var(--ease); cursor: default; }
-    .project-card:hover { padding: 0 22px; background: #171714; }
+    .project-card { overflow: hidden; border-bottom: 1px solid var(--line); }
+    .project-trigger { width: 100%; display: grid; grid-template-columns: 90px minmax(180px, .7fr) 1fr 40px; gap: 24px; align-items: center; min-height: 122px; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; text-align: left; transition: padding .3s var(--ease), background .3s; }
+    .project-card:hover .project-trigger, .project-card.is-open .project-trigger { padding: 0 22px; background: #171714; }
     .project-card .project-no { color: var(--signal); font: 800 11px "DIN Alternate", sans-serif; letter-spacing: .15em; }
     .project-name strong { display: block; font: 900 clamp(22px, 2.6vw, 38px)/1.1 "Songti SC", serif; }
     .project-name span { display: block; margin-top: 7px; color: #6f6b65; font-size: 10px; letter-spacing: .14em; }
     .project-scope { color: #aaa59d; font-size: 14px; line-height: 1.65; }
-    .project-arrow { color: #56524c; font-size: 24px; }
-    .project-stage { margin-top: 24px; display: grid; grid-template-columns: 1.4fr .6fr; gap: 16px; }
-    .photo-slot { position: relative; min-height: 390px; display: flex; align-items: flex-end; padding: 25px; overflow: hidden; border: 1px solid var(--line); background: repeating-linear-gradient(135deg, #141412 0, #141412 14px, #11110f 14px, #11110f 28px); }
-    .photo-slot::before { content: ""; position: absolute; inset: 12px; border: 1px dashed #3d3933; }
-    .photo-slot.tall { min-height: 540px; }
-    .slot-label { position: relative; z-index: 2; }
-    .slot-label strong { display: block; font: 900 clamp(27px, 3.4vw, 48px)/1 "Songti SC", serif; }
-    .slot-label span { display: block; margin-top: 10px; color: #6c6861; font-size: 10px; letter-spacing: .17em; }
-    .replace-note { margin-top: 18px; color: #5f5b55; font-size: 11px; line-height: 1.7; }
+    .project-arrow { color: var(--signal); font: 400 29px/1 "Songti SC", serif; transition: transform .4s var(--ease); }
+    .project-card:hover .project-arrow, .project-card.is-open .project-arrow { transform: rotate(45deg); }
+    .project-stage-wrap { max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-20px); transition: max-height .75s var(--ease), opacity .35s ease, transform .55s var(--ease), padding .55s var(--ease); }
+    .project-card.is-open .project-stage-wrap { max-height: 720px; padding: 0 0 28px; opacity: 1; transform: none; }
+    @media (min-width: 981px) and (hover: hover) and (pointer: fine) { .project-card:hover .project-stage-wrap { max-height: 720px; padding: 0 0 28px; opacity: 1; transform: none; } }
+    .project-stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #171714; }
+    .project-media-rows { display: grid; height: 100%; grid-template-rows: 1fr 1fr; gap: 5px; overflow: hidden; }
+    .project-media-row { display: flex; width: max-content; gap: 4px; animation: project-row-left 44s linear infinite; }
+    .project-media-row.reverse { animation-name: project-row-right; animation-duration: 52s; }
+    .project-media-row img { width: clamp(165px, 16vw, 255px); height: 100%; flex: 0 0 auto; object-fit: cover; filter: saturate(.88) contrast(1.05); }
+    .project-media-row img.landscape { width: clamp(315px, 31vw, 500px); }
+    @keyframes project-row-left { to { transform: translateX(-50%); } }
+    @keyframes project-row-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .project-stage-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+    .project-stage-label { position: absolute; z-index: 2; left: 22px; bottom: 19px; padding: 10px 13px; border-left: 2px solid var(--signal); background: rgba(10,10,9,.78); color: var(--white); font: 700 10px/1.3 "DIN Alternate", sans-serif; letter-spacing: .15em; }
+    .project-play { position: absolute; z-index: 3; top: 50%; left: 50%; padding: 13px 18px 12px; border: 1px solid var(--signal); background: rgba(10,10,9,.78); color: var(--signal); cursor: pointer; font: 700 11px/1 "DIN Alternate", sans-serif; letter-spacing: .12em; transform: translate(-50%, -50%); transition: background .3s, color .3s; }
+    .project-play:hover { background: var(--signal); color: var(--black); }
+    .project-video-dialog { position: fixed; z-index: 300; inset: 0; display: grid; place-items: center; padding: 30px; background: rgba(0,0,0,.88); }
+    .project-video-dialog[hidden] { display: none; }
+    .project-video-dialog video { width: min(1100px, 100%); max-height: 82svh; background: #000; }
+    .project-video-close { position: absolute; top: 20px; right: 24px; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.35); background: rgba(10,10,9,.75); color: var(--white); cursor: pointer; font-size: 27px; line-height: 1; }
 
     .positioning { color: var(--black); background: var(--paper-2); }
     .positioning-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(55px, 9vw, 140px); align-items: start; }
@@ -377,11 +385,14 @@
       .journey-step:nth-child(3) { border-right: 1px solid rgba(10,10,9,.24); }
       .journey-step:nth-child(n+3) { border-top: 1px solid rgba(10,10,9,.25); }
       .journey-step:nth-child(n+3)::before { display: none; }
-      .project-card { grid-template-columns: 45px 1fr 24px; gap: 12px; padding: 18px 0; }
-      .project-card:hover { padding: 18px 10px; }
+      .project-trigger { grid-template-columns: 45px 1fr 24px; gap: 12px; min-height: 0; padding: 18px 0; }
+      .project-card:hover .project-trigger, .project-card.is-open .project-trigger { padding: 18px 10px; }
       .project-scope { grid-column: 2 / span 2; }
-      .project-stage { grid-template-columns: 1fr; }
-      .photo-slot, .photo-slot.tall { min-height: 330px; }
+      .project-stage { aspect-ratio: 4 / 3; }
+      .project-media-row img { width: 128px; }
+      .project-media-row img.landscape { width: 238px; }
+      .project-stage-label { left: 13px; bottom: 13px; font-size: 9px; }
+      .project-play { padding: 11px 13px 10px; font-size: 10px; }
       .contact-details { min-width: 0; }
       .footer { flex-direction: column; }
     }
@@ -402,7 +413,7 @@
     </a>
     <nav class="nav-links" aria-label="主导航">
       <a href="#home">首页介绍</a>
-      <a href="#about">关于我们</a>
+      <a href="#about">团队介绍</a>
       <a href="#modes">五项服务</a>
       <a href="#artists">签约艺人</a>
       <a href="#projects">项目案例</a>
@@ -425,11 +436,11 @@
             </div>
           </div>
           <aside class="hero-console reveal" aria-label="服务摘要">
-            <a class="console-row" href="#modes" data-mode-target="delivery"><small>01 / MODE</small><strong>全案交付</strong></a>
-            <a class="console-row" href="#modes" data-mode-target="consult"><small>02 / MODE</small><strong>项目指导</strong></a>
-            <a class="console-row" href="#modes" data-mode-target="coach"><small>03 / MODE</small><strong>项目陪跑</strong></a>
-            <a class="console-row" href="#modes" data-mode-target="design"><small>04 / MODE</small><strong>品牌设计外包</strong></a>
-            <a class="console-row bonus" href="#modes" data-mode-target="analytics"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></a>
+            <div class="console-row"><small>01 / MODE</small><strong>全案交付</strong></div>
+            <div class="console-row"><small>02 / MODE</small><strong>项目指导</strong></div>
+            <div class="console-row"><small>03 / MODE</small><strong>项目陪跑</strong></div>
+            <div class="console-row"><small>04 / MODE</small><strong>品牌设计外包</strong></div>
+            <div class="console-row bonus"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></div>
           </aside>
         </div>
         <div class="hero-foot reveal"><span>由深圳龙洙传媒有限公司创办</span><span>SCROLL TO EXPLORE ↓</span></div>
@@ -496,18 +507,15 @@
       <div class="wrap">
         <header class="section-head">
           <div><div class="eyebrow reveal">Selected projects / 项目展示</div><h2 class="display reveal">用真实项目，<br><em>说明我们做过什么</em></h2></div>
-          <p class="lead reveal">以下为版式占位。后续替换为真实项目名称、城市、合作身份、负责范围与现场图片，不使用未经确认的成果数据。</p>
+          <p class="lead reveal">以下项目来自创始人既有项目经历，侧重呈现品牌产品、空间体验、现场演出与运营系统等工作方向。</p>
         </header>
         <div class="project-list reveal">
-          <article class="project-card"><span class="project-no">CASE 01</span><div class="project-name"><strong>项目名称 A</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
-          <article class="project-card"><span class="project-no">CASE 02</span><div class="project-name"><strong>项目名称 B</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
-          <article class="project-card"><span class="project-no">CASE 03</span><div class="project-name"><strong>项目名称 C</strong><span>BAR LOGO / 后续替换</span></div><p class="project-scope">城市 · 项目类型 · 合作身份 · 负责范围</p><span class="project-arrow">↗</span></article>
+          <article class="project-card" data-project-card><button class="project-trigger" type="button" aria-expanded="false"><span class="project-no">CASE 01</span><div class="project-name"><strong>星德罗</strong><span>SYNDROME · 韩式互动夜店</span></div><p class="project-scope">韩国跨国潮牌夜店在中国的产品落地与延展；2025 年昆明项目陪跑。</p><span class="project-arrow">＋</span></button><div class="project-stage-wrap"><div class="project-stage"><div class="project-media-rows" aria-hidden="true"><div class="project-media-row"><img src="assets/projects/showcase/syndrome/scene-01.webp" alt=""><img src="assets/projects/showcase/syndrome/scene-h01.webp" class="landscape" alt=""><img src="assets/projects/showcase/syndrome/scene-03.webp" alt=""><img src="assets/projects/showcase/syndrome/scene-h02.webp" class="landscape" alt=""><img src="assets/projects/showcase/syndrome/scene-05.webp" alt=""><img src="assets/projects/showcase/syndrome/scene-h03.webp" class="landscape" alt=""></div><div class="project-media-row reverse"><img src="assets/projects/showcase/syndrome/scene-h04.webp" class="landscape" alt=""><img src="assets/projects/showcase/syndrome/scene-08.webp" alt=""><img src="assets/projects/showcase/syndrome/scene-h05.webp" class="landscape" alt=""><img src="assets/projects/showcase/syndrome/scene-11.webp" alt=""><img src="assets/projects/showcase/syndrome/scene-h06.webp" class="landscape" alt=""><img src="assets/projects/showcase/syndrome/scene-13.webp" alt=""></div></div><button class="project-play" type="button" data-project-video="assets/projects/showcase/video/syndrome-tone.mp4" data-project-poster="assets/projects/showcase/video/syndrome-tone-poster.jpg" data-project-title="星德罗 · 产品调性视频">播放项目视频</button><span class="project-stage-label">SYNDROME · PROJECT MATERIAL</span></div></div></article>
+          <article class="project-card" data-project-card><button class="project-trigger" type="button" aria-expanded="false"><span class="project-no">CASE 02</span><div class="project-name"><strong>Babi Room</strong><span>高空派对场 · 产品研发</span></div><p class="project-scope">围绕空间调性、舞台氛围、人群互动与内容传播，整合视觉记忆、现场节奏与消费体验。</p><span class="project-arrow">＋</span></button><div class="project-stage-wrap"><div class="project-stage"><div class="project-media-rows" aria-hidden="true"><div class="project-media-row"><img src="assets/projects/showcase/babi/scene-01.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-02.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-03.webp" alt=""><img src="assets/projects/showcase/babi/scene-04.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-05.webp" alt=""><img src="assets/projects/showcase/babi/scene-06.webp" class="landscape" alt=""></div><div class="project-media-row reverse"><img src="assets/projects/showcase/babi/scene-07.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-08.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-09.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-10.webp" alt=""><img src="assets/projects/showcase/babi/scene-11.webp" class="landscape" alt=""><img src="assets/projects/showcase/babi/scene-12.webp" alt=""></div></div><span class="project-stage-label">BABI ROOM · PROJECT MATERIAL</span></div></div></article>
+          <article class="project-card" data-project-card><button class="project-trigger" type="button" aria-expanded="false"><span class="project-no">CASE 03</span><div class="project-name"><strong>锐舞</strong><span>RAVE · 小空间音乐酒吧</span></div><p class="project-scope">以音乐专业性与 Underground 兴趣文化为核心，构建社交、社群与台上台下互动体验。</p><span class="project-arrow">＋</span></button><div class="project-stage-wrap"><div class="project-stage"><div class="project-media-rows" aria-hidden="true"><div class="project-media-row"><img src="assets/projects/showcase/rave/scene-01.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-02.webp" alt=""><img src="assets/projects/showcase/rave/scene-03.webp" alt=""><img src="assets/projects/showcase/rave/scene-04.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-05.webp" alt=""><img src="assets/projects/showcase/rave/scene-06.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-07.webp" alt=""><img src="assets/projects/showcase/rave/scene-08.webp" alt=""></div><div class="project-media-row reverse"><img src="assets/projects/showcase/rave/scene-09.webp" alt=""><img src="assets/projects/showcase/rave/scene-10.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-11.webp" alt=""><img src="assets/projects/showcase/rave/scene-12.webp" alt=""><img src="assets/projects/showcase/rave/scene-13.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-14.webp" alt=""><img src="assets/projects/showcase/rave/scene-15.webp" class="landscape" alt=""><img src="assets/projects/showcase/rave/scene-16.webp" alt=""></div></div><span class="project-stage-label">RAVE · PROJECT MATERIAL</span></div></div></article>
+          <article class="project-card" data-project-card><button class="project-trigger" type="button" aria-expanded="false"><span class="project-no">CASE 04</span><div class="project-name"><strong>Dr.Oscar</strong><span>剧院式酒吧 · 产品系统建设</span></div><p class="project-scope">参与产品架构、剧本创作与现场系统优化，以主题内容、演出节奏与团队执行完成沉浸式体验。</p><span class="project-arrow">＋</span></button><div class="project-stage-wrap"><div class="project-stage"><div class="project-media-rows" aria-hidden="true"><div class="project-media-row"><img src="assets/projects/showcase/oscar/scene-01.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-02.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-03.webp" alt=""><img src="assets/projects/showcase/oscar/scene-04.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-05.webp" alt=""><img src="assets/projects/showcase/oscar/scene-06.webp" class="landscape" alt=""></div><div class="project-media-row reverse"><img src="assets/projects/showcase/oscar/scene-07.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-08.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-09.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-10.webp" alt=""><img src="assets/projects/showcase/oscar/scene-11.webp" class="landscape" alt=""><img src="assets/projects/showcase/oscar/scene-12.webp" alt=""></div></div><button class="project-play" type="button" data-project-video="assets/projects/showcase/video/dr-oscar-brand.mp4" data-project-poster="assets/projects/showcase/video/dr-oscar-brand-poster.jpg" data-project-title="Dr.Oscar · 品牌属性视频">播放项目视频</button><span class="project-stage-label">DR.OSCAR · PROJECT MATERIAL</span></div></div></article>
+          <article class="project-card" data-project-card><button class="project-trigger" type="button" aria-expanded="false"><span class="project-no">CASE 05</span><div class="project-name"><strong>「南」娱乐综合体</strong><span>项目顾问 · 复合娱乐业态</span></div><p class="project-scope">由 Live Show、韩式酒吧与派对娱乐协同，统筹产品定位、空间体验与运营衔接。</p><span class="project-arrow">＋</span></button><div class="project-stage-wrap"><div class="project-stage"><video class="project-stage-video" controls playsinline preload="metadata" poster="assets/projects/showcase/video/nan-livehouse-poster.jpg" aria-label="南 Livehouse 项目现场视频"><source src="assets/projects/showcase/video/nan-livehouse.mp4" type="video/mp4"></video><span class="project-stage-label">「南」娱乐综合体 · PROJECT VIDEO</span></div></div></article>
         </div>
-        <div class="project-stage reveal">
-          <figure class="photo-slot tall"><figcaption class="slot-label"><strong>项目主视觉 / 空间全景</strong><span>PHOTO SLOT · 建议横版 16:10</span></figcaption></figure>
-          <figure class="photo-slot"><figcaption class="slot-label"><strong>现场细节 / 团队执行</strong><span>PHOTO SLOT · 建议竖版 4:5</span></figcaption></figure>
-        </div>
-        <p class="replace-note reveal">图片位置已预留。后续可根据项目素材调整为：空间全景、舞台现场、开业活动、团队工作照或改造前后对比。</p>
       </div>
     </section>
 
@@ -517,11 +525,16 @@
         <h2 class="reveal">先把项目情况<br><em>说清楚</em></h2>
         <div class="contact-grid reveal">
           <p>如果您正在筹备新的夜经济娱乐或酒吧项目，或现有项目需要重新定位与经营优化，欢迎与我们沟通项目所在城市、当前阶段、投资目标及核心问题。</p>
-          <div class="contact-details"><strong>TBN实验室</strong></div>
+          <div class="contact-details"><strong>TBN实验室 × 深圳龙洙传媒有限公司</strong><span>项目联系人：金会杰</span><small>电话 / 微信 / 邮箱：正式发布前补充</small></div>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="project-video-dialog" data-project-video-dialog role="dialog" aria-modal="true" aria-label="项目视频播放" hidden>
+    <button class="project-video-close" type="button" aria-label="关闭视频">×</button>
+    <video controls playsinline preload="metadata" data-project-video-element></video>
+  </div>
 
   <footer class="footer"><span>© TBN LAB · NIGHT ECONOMY PROJECT SERVICE</span><span>当前为内容与视觉工作版，图片及项目信息待补充</span></footer>
 
@@ -585,8 +598,42 @@
     }
 
     modeTabs.forEach(tab => tab.addEventListener('click', () => renderMode(tab.dataset.mode)));
-    document.querySelectorAll('[data-mode-target]').forEach(row => row.addEventListener('click', () => renderMode(row.dataset.modeTarget)));
     renderMode('delivery');
+
+    const projectCards = [...document.querySelectorAll('[data-project-card]')];
+    const desktopPointer = matchMedia('(min-width: 981px) and (hover: hover) and (pointer: fine)');
+    const setProjectOpen = (card, open) => {
+      card.classList.toggle('is-open', open);
+      card.querySelector('.project-trigger').setAttribute('aria-expanded', String(open));
+      if (!open) card.querySelector('video')?.pause();
+    };
+    projectCards.forEach(card => {
+      const trigger = card.querySelector('.project-trigger');
+      trigger.addEventListener('click', () => setProjectOpen(card, !card.classList.contains('is-open')));
+      card.addEventListener('mouseenter', () => { if (desktopPointer.matches) setProjectOpen(card, true); });
+      card.addEventListener('mouseleave', () => { if (desktopPointer.matches) setProjectOpen(card, false); });
+    });
+
+    const projectVideoDialog = document.querySelector('[data-project-video-dialog]');
+    const projectVideo = document.querySelector('[data-project-video-element]');
+    const closeProjectVideo = () => {
+      projectVideo.pause();
+      projectVideo.removeAttribute('src');
+      projectVideo.load();
+      projectVideoDialog.hidden = true;
+      document.body.style.removeProperty('overflow');
+    };
+    document.querySelectorAll('.project-play').forEach(button => button.addEventListener('click', () => {
+      projectVideo.src = button.dataset.projectVideo;
+      projectVideo.poster = button.dataset.projectPoster || '';
+      projectVideo.setAttribute('aria-label', button.dataset.projectTitle || '项目视频');
+      projectVideoDialog.hidden = false;
+      document.body.style.overflow = 'hidden';
+      projectVideo.play().catch(() => {});
+    }));
+    projectVideoDialog.querySelector('.project-video-close').addEventListener('click', closeProjectVideo);
+    projectVideoDialog.addEventListener('click', event => { if (event.target === projectVideoDialog) closeProjectVideo(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !projectVideoDialog.hidden) closeProjectVideo(); });
 
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver(entries => {
@@ -625,6 +672,5 @@
       menuToggle.setAttribute('aria-expanded', 'false');
     }));
   </script>
-  <script>try{if(sessionStorage.getItem('tbn-route-enter')==='1'){requestAnimationFrame(()=>requestAnimationFrame(()=>{document.documentElement.classList.remove('tbn-route-enter');sessionStorage.removeItem('tbn-route-enter');}));}}catch(e){}</script>
 </body>
 </html>
