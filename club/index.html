@@ -156,11 +156,14 @@
     .button.primary { color: var(--black); background: var(--signal); border-color: var(--signal); font-weight: 800; }
     .button:hover { color: var(--black); background: var(--white); border-color: var(--white); }
     .hero-console { border-top: 1px solid var(--line); }
-    .console-row { display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; border-bottom: 1px solid var(--line); }
+    .console-row { width: 100%; display: grid; grid-template-columns: 72px 1fr; min-height: 86px; align-items: center; padding: 0; border-bottom: 1px solid var(--line); border-left: 3px solid transparent; color: inherit; background: transparent; text-align: left; cursor: pointer; transition: color .28s var(--ease), background .28s ease, border-color .28s ease, padding .28s var(--ease); }
     .console-row small { color: #615e58; font: 700 10px "DIN Alternate", sans-serif; letter-spacing: .14em; }
     .console-row strong { font-size: 15px; line-height: 1.45; }
     .console-row.bonus strong { color: var(--signal); }
     .console-row.bonus strong span { display: block; margin-top: 3px; color: #77736c; font-size: 9px; font-weight: 500; letter-spacing: .08em; }
+    .console-row:hover, .console-row:focus-visible { padding-left: 13px; border-left-color: var(--signal); color: var(--signal); background: rgba(255, 77, 0, .07); outline: 0; }
+    .console-row:hover small, .console-row:focus-visible small { color: var(--signal-soft); }
+    .console-row:hover strong, .console-row:focus-visible strong { color: inherit; }
     .hero-foot { display: flex; justify-content: space-between; margin-top: 84px; padding-top: 16px; border-top: 1px solid var(--line); color: #65615b; font-size: 10px; letter-spacing: .16em; }
 
     .intro-section { color: var(--black); background: var(--paper); }
@@ -287,12 +290,13 @@
     .project-stage-wrap { max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-20px); transition: max-height .75s var(--ease), opacity .35s ease, transform .55s var(--ease), padding .55s var(--ease); }
     .project-card.is-open .project-stage-wrap { max-height: 720px; padding: 0 0 28px; opacity: 1; transform: none; }
     @media (min-width: 981px) and (hover: hover) and (pointer: fine) { .project-card:hover .project-stage-wrap { max-height: 720px; padding: 0 0 28px; opacity: 1; transform: none; } }
-    .project-stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #171714; }
+    .project-stage { --project-tile: clamp(92px, 20cqw, 255px); --project-tile-landscape: clamp(178px, 39cqw, 500px); position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; container-type: inline-size; background: #171714; }
     .project-media-rows { display: grid; height: 100%; grid-template-rows: 1fr 1fr; gap: 5px; overflow: hidden; }
-    .project-media-row { display: flex; width: max-content; gap: 4px; animation: project-row-left 44s linear infinite; }
+    .project-media-row { display: flex; width: max-content; gap: 0; will-change: transform; animation: project-row-left 44s linear infinite; }
     .project-media-row.reverse { animation-name: project-row-right; animation-duration: 52s; }
-    .project-media-row img { width: clamp(165px, 16vw, 255px); height: 100%; flex: 0 0 auto; object-fit: cover; filter: saturate(.88) contrast(1.05); }
-    .project-media-row img.landscape { width: clamp(315px, 31vw, 500px); }
+    .project-media-set { display: flex; flex: 0 0 auto; gap: 4px; padding-right: 4px; }
+    .project-media-row img { width: var(--project-tile); height: 100%; flex: 0 0 auto; object-fit: cover; filter: saturate(.88) contrast(1.05); }
+    .project-media-row img.landscape { width: var(--project-tile-landscape); }
     @keyframes project-row-left { to { transform: translateX(-50%); } }
     @keyframes project-row-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
     .project-stage-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
@@ -367,7 +371,7 @@
       .intro-fact { padding-bottom: 20px; border-bottom: 1px solid var(--ink-line); }
       .mode-shell { grid-template-columns: 1fr; }
       .mode-tabs { display: grid; grid-template-columns: repeat(2, 1fr); border-right: 0; border-bottom: 1px solid var(--line); }
-      .mode-tab { min-height: 100px; grid-template-columns: 1fr; gap: 5px; padding: 16px 12px; border-right: 1px solid var(--line); border-bottom: 0; }
+      .mode-tab { min-height: 100px; grid-template-columns: 1fr; gap: 5px; padding: 16px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
       .mode-tab:nth-child(even) { border-right: 0; }
       .mode-tab:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
       .mode-tab:hover { padding-left: 12px; }
@@ -389,8 +393,6 @@
       .project-card:hover .project-trigger, .project-card.is-open .project-trigger { padding: 18px 10px; }
       .project-scope { grid-column: 2 / span 2; }
       .project-stage { aspect-ratio: 4 / 3; }
-      .project-media-row img { width: 128px; }
-      .project-media-row img.landscape { width: 238px; }
       .project-stage-label { left: 13px; bottom: 13px; font-size: 9px; }
       .project-play { padding: 11px 13px 10px; font-size: 10px; }
       .contact-details { min-width: 0; }
@@ -436,11 +438,11 @@
             </div>
           </div>
           <aside class="hero-console reveal" aria-label="服务摘要">
-            <div class="console-row"><small>01 / MODE</small><strong>全案交付</strong></div>
-            <div class="console-row"><small>02 / MODE</small><strong>项目指导</strong></div>
-            <div class="console-row"><small>03 / MODE</small><strong>项目陪跑</strong></div>
-            <div class="console-row"><small>04 / MODE</small><strong>品牌设计外包</strong></div>
-            <div class="console-row bonus"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></div>
+            <button class="console-row" type="button" data-mode="delivery" aria-controls="mode-panel"><small>01 / MODE</small><strong>全案交付</strong></button>
+            <button class="console-row" type="button" data-mode="consult" aria-controls="mode-panel"><small>02 / MODE</small><strong>项目指导</strong></button>
+            <button class="console-row" type="button" data-mode="coach" aria-controls="mode-panel"><small>03 / MODE</small><strong>项目陪跑</strong></button>
+            <button class="console-row" type="button" data-mode="design" aria-controls="mode-panel"><small>04 / MODE</small><strong>品牌设计外包</strong></button>
+            <button class="console-row bonus" type="button" data-mode="analytics" aria-controls="mode-panel"><small>05 / BONUS</small><strong>经营数据分析<span>项目指导 / 项目陪跑附赠</span></strong></button>
           </aside>
         </div>
         <div class="hero-foot reveal"><span>由深圳龙洙传媒有限公司创办</span><span>SCROLL TO EXPLORE ↓</span></div>
@@ -598,7 +600,24 @@
     }
 
     modeTabs.forEach(tab => tab.addEventListener('click', () => renderMode(tab.dataset.mode)));
+    document.querySelectorAll('.console-row[data-mode]').forEach(row => row.addEventListener('click', () => {
+      const targetTab = modeTabs.find(tab => tab.dataset.mode === row.dataset.mode);
+      renderMode(row.dataset.mode);
+      const target = document.querySelector('#modes');
+      window.history.pushState(null, '', '#modes');
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight, behavior: 'smooth' });
+      window.setTimeout(() => targetTab?.focus({ preventScroll: true }), 450);
+    }));
     renderMode('delivery');
+
+    document.querySelectorAll('.project-media-row').forEach(row => {
+      const set = document.createElement('div');
+      set.className = 'project-media-set';
+      [...row.querySelectorAll(':scope > img')].forEach(image => set.append(image));
+      const duplicate = set.cloneNode(true);
+      duplicate.setAttribute('aria-hidden', 'true');
+      row.replaceChildren(set, duplicate);
+    });
 
     const projectCards = [...document.querySelectorAll('[data-project-card]')];
     const desktopPointer = matchMedia('(min-width: 981px) and (hover: hover) and (pointer: fine)');
