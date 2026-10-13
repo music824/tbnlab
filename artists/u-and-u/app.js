@@ -80,17 +80,20 @@
   }
 
   const cursor = $('.cursor');
-  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  if (cursor && !reducedMotion && window.matchMedia('(pointer: fine)').matches) {
     let targetX = innerWidth / 2, targetY = innerHeight / 2, x = targetX, y = targetY;
-    window.addEventListener('pointermove', (event) => { targetX = event.clientX; targetY = event.clientY; });
+    let cursorFrame = 0;
+    window.addEventListener('pointermove', (event) => { targetX = event.clientX; targetY = event.clientY; if (!cursorFrame && !document.hidden) cursorFrame = requestAnimationFrame(renderCursor); });
     const renderCursor = () => {
+      cursorFrame = 0;
+      if (document.hidden) return;
       x += (targetX - x) * .18;
       y += (targetY - y) * .18;
       cursor.style.left = `${x}px`;
       cursor.style.top = `${y}px`;
-      requestAnimationFrame(renderCursor);
+      if (Math.abs(targetX - x) + Math.abs(targetY - y) > .15) cursorFrame = requestAnimationFrame(renderCursor);
     };
-    renderCursor();
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(cursorFrame); cursorFrame = 0; } });
     $$('a, button').forEach((item) => {
       item.addEventListener('mouseenter', () => cursor.classList.add('is-hovering'));
       item.addEventListener('mouseleave', () => cursor.classList.remove('is-hovering'));
@@ -159,8 +162,9 @@
   };
   const resetSliderTimer = () => {
     window.clearInterval(sliderTimer);
-    if (!reducedMotion) sliderTimer = window.setInterval(() => goToSlide(slideIndex + 1), 3800);
+    if (!reducedMotion && !document.hidden) sliderTimer = window.setInterval(() => goToSlide(slideIndex + 1), 3800);
   };
+  document.addEventListener('visibilitychange', resetSliderTimer);
   $('.slider-arrow--prev').addEventListener('click', (event) => { event.preventDefault(); goToSlide(slideIndex - 1); resetSliderTimer(); });
   $('.slider-arrow--next').addEventListener('click', (event) => { event.preventDefault(); goToSlide(slideIndex + 1); resetSliderTimer(); });
   sliderDots.forEach((dot, index) => dot.addEventListener('click', () => { goToSlide(index); resetSliderTimer(); }));

@@ -1,24 +1,25 @@
 const artists = [
-  { name: "KANG SUNG HOON 강성훈", latinName: "KANG SUNG HOON", koreanName: "강성훈", role: "K-POP ARTIST", image: "assets/posters/roster-20260916-kang-sung-hoon.png", accent: "#c7a071", website: "" },
-  { name: "SUJI 소아", latinName: "SUJI", koreanName: "소아", role: "DANCE / PERFORMANCE", image: "assets/posters/roster-20260916-suji.png", accent: "#e42834", website: "" },
-  { name: "BY", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-by.png", accent: "#9dff19", website: "BY/index.html" },
-  { name: "KRISHA", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-krisha.png", accent: "#2f64ff", website: "" },
-  { name: "PICKTA", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-pickta.png", accent: "#d8432e", website: "PickTa/index.html" },
-  { name: "X:IN 엑신", latinName: "X:IN", koreanName: "엑신", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-xin.png", accent: "#4a58c7", website: "" },
-  { name: "U&U", role: "PERFORMANCE DUO", image: "assets/posters/uu-oriental.png", accent: "#d0b16d", website: "u-and-u/index.html" },
-  { name: "SSREAM 쌤", latinName: "SSREAM", koreanName: "쌤", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-ssream.png", accent: "#42bcd2", website: "" },
-  { name: "MC 베니", role: "RAPPER / MC", image: "assets/posters/roster-20260916-mc-beni.png", accent: "#e5a412", website: "" },
-  { name: "DJ 프레스킷", latinName: "DJ", koreanName: "프레스킷", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-dj-presket.png", accent: "#eb2528", website: "" },
-  { name: "TEENTOP", role: "K-POP GROUP", image: "assets/posters/roster-20260916-teentop.png", accent: "#ef3a24", website: "" },
-  { name: "CHEERLEADER QUEEN", role: "CHEERLEADING TEAM", image: "assets/posters/roster-20260916-cheerleader-queen.png", accent: "#2f64ff", website: "" },
-  { name: "GARRY DIAMOND", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-garry-diamond.png", accent: "#2f64ff", website: "" },
-  { name: "ALPHA-X", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-alpha-x.png", accent: "#8db6d9", website: "" },
-  { name: "BRAND NEW GIRL 브랜뉴걸", latinName: "BRAND NEW GIRL", koreanName: "브랜뉴걸", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-brand-new-girl.png", accent: "#f43fb4", website: "" },
-  { name: "E&K", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-eandk.png", accent: "#9c4dff", website: "" },
-  { name: "FLAY WITH ME", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-flay-with-me.png", accent: "#38c7ff", website: "" },
-  { name: "EPTS", role: "K-POP GROUP", image: "assets/posters/roster-20260916-epts.png", accent: "#00a9ff", website: "" },
-  { name: "DJ TAJO", role: "SPECIAL GUEST DJ", image: "assets/posters/roster-20260916-dj-tajo.png", accent: "#c29b58", website: "TAJO/index.html" },
-  { name: "FLEX", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-flex.jpg", accent: "#9fca78", website: "" },
+  { name: "KANG SUNG HOON 강성훈", latinName: "KANG SUNG HOON", koreanName: "강성훈", role: "K-POP ARTIST", image: "assets/posters/roster-20260916-kang-sung-hoon-site.webp", accent: "#c7a071", website: "" },
+  { name: "SUJI 소아", latinName: "SUJI", koreanName: "소아", role: "DANCE / PERFORMANCE", image: "assets/posters/roster-20260916-suji-site.webp", accent: "#e42834", website: "" },
+  { name: "BY", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-by-site.webp", accent: "#9dff19", website: "BY/index.html" },
+  { name: "KRISHA", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-krisha-site.webp", accent: "#2f64ff", website: "" },
+  { name: "PICKTA", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-pickta-site.webp", accent: "#d8432e", website: "PickTa/index.html" },
+  { name: "X:IN 엑신", latinName: "X:IN", koreanName: "엑신", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-xin-site.webp", accent: "#4a58c7", website: "" },
+  { name: "U&U", role: "PERFORMANCE DUO", image: "assets/posters/uu-oriental-site.webp", accent: "#d0b16d", website: "u-and-u/index.html" },
+  { name: "SSREAM 쌤", latinName: "SSREAM", koreanName: "쌤", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-ssream-site.webp", accent: "#42bcd2", website: "" },
+  { name: "MC 베니", role: "RAPPER / MC", image: "assets/posters/roster-20260916-mc-beni-site.webp", accent: "#e5a412", website: "" },
+  { name: "DJ 프레스킷", latinName: "DJ", koreanName: "프레스킷", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-dj-presket-site.webp", accent: "#eb2528", website: "" },
+  { name: "TEENTOP", role: "K-POP GROUP", image: "assets/posters/roster-20260916-teentop-site.webp", accent: "#ef3a24", website: "" },
+  { name: "CHEERLEADER QUEEN", role: "CHEERLEADING TEAM", image: "assets/posters/roster-20260916-cheerleader-queen-site.webp", accent: "#2f64ff", website: "" },
+  { name: "GARRY DIAMOND", role: "PERFORMANCE DJ", image: "assets/posters/roster-20260916-garry-diamond-site.webp", accent: "#2f64ff", website: "" },
+  { name: "ALPHA-X", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-alpha-x-site.webp", accent: "#8db6d9", website: "" },
+  { name: "BRAND NEW GIRL 브랜뉴걸", latinName: "BRAND NEW GIRL", koreanName: "브랜뉴걸", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-brand-new-girl-site.webp", accent: "#f43fb4", website: "" },
+  { name: "E&K", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-eandk-site.webp", accent: "#9c4dff", website: "" },
+  { name: "FLAY WITH ME", role: "PERFORMANCE GROUP", image: "assets/posters/roster-20260916-flay-with-me-site.webp", accent: "#38c7ff", website: "" },
+  { name: "EPTS", role: "K-POP GROUP", image: "assets/posters/roster-20260916-epts-site.webp", accent: "#00a9ff", website: "" },
+  { name: "DJ TAJO", role: "SPECIAL GUEST DJ", image: "assets/posters/roster-20260916-dj-tajo-site.webp", accent: "#c29b58", website: "TAJO/index.html" },
+  { name: "FLEX", role: "PERFORMANCE DUO", image: "assets/posters/roster-20260916-flex-site.webp", accent: "#9fca78", website: "" },
+  { name: "K-POP 踢馆", role: "K-POP NIGHT CHALLENGE", image: "assets/posters/kpop-night-challenge-site.webp", accent: "#39ef4a", website: "kpop-night-challenge/" },
 ];
 
 const heroRoot = document.querySelector(".hero-carousel");
@@ -132,6 +133,7 @@ function setHero(nextIndex, options = {}) {
     const selected = index === heroIndex;
     slide.classList.toggle("is-active", selected);
     slide.setAttribute("aria-current", selected ? "true" : "false");
+    if (Math.abs(index - heroIndex) <= 1) slide.querySelector("img").loading = "eager";
     slide.setAttribute("aria-label", selected ? `打开 ${artists[index].name} 个人主页` : `选择 ${artists[index].name}`);
   });
 
@@ -187,26 +189,13 @@ function closeProfileNotice() {
 
 function renderHero() {
   heroRoot.style.setProperty("--artist-count", artists.length);
-  heroFilmstrip.innerHTML = artists
-    .map(
-      (artist, index) => `
-        <button
-          class="hero-slide${index === 0 ? " is-active" : ""}"
-          type="button"
-          data-index="${index}"
-          aria-label="${index === 0 ? `打开 ${artist.name} 个人主页` : `选择 ${artist.name}`}"
-          aria-current="${index === 0 ? "true" : "false"}"
-        >
-          <img src="${artist.image}" alt="" draggable="false" />
-          <span class="hero-slide__number">${twoDigits(index + 1)}</span>
-        </button>
-      `,
-    )
-    .join("");
+  // The artist directory is rendered in HTML so links remain discoverable without JavaScript.
 
   heroFilmstrip.querySelectorAll(".hero-slide").forEach((slide) => {
     const index = Number(slide.dataset.index);
-    slide.addEventListener("click", () => {
+    slide.addEventListener("click", (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
       if (suppressHeroClick) return;
       if (index === heroIndex) {
         openProfile(index);
@@ -338,20 +327,24 @@ if (finePointer && !reduceMotion) {
   let pointerY = window.innerHeight / 2;
   let cursorX = pointerX;
   let cursorY = pointerY;
+  let cursorFrame = 0;
 
   window.addEventListener("pointermove", (event) => {
     pointerX = event.clientX;
     pointerY = event.clientY;
     glow.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%)`;
+    if (!cursorFrame && !document.hidden) cursorFrame = requestAnimationFrame(animateCursor);
   });
 
   function animateCursor() {
+    cursorFrame = 0;
+    if (document.hidden) return;
     cursorX += (pointerX - cursorX) * 0.2;
     cursorY += (pointerY - cursorY) * 0.2;
     cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
-    requestAnimationFrame(animateCursor);
+    if (Math.abs(pointerX - cursorX) + Math.abs(pointerY - cursorY) > .15) cursorFrame = requestAnimationFrame(animateCursor);
   }
-  animateCursor();
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(cursorFrame); cursorFrame = 0; } });
 
   document.querySelectorAll(".magnetic").forEach((element) => {
     element.addEventListener("pointermove", (event) => {
@@ -375,10 +368,17 @@ if (bootScreen && finePointer && !reduceMotion) {
   });
 }
 
-window.addEventListener("load", () => {
+let bootFinished = false;
+function finishBoot() {
+  if (bootFinished) return;
+  bootFinished = true;
   document.body.classList.add("is-loaded");
-  if (!bootScreen || reduceMotion) return;
-  window.setTimeout(() => {
-    window.requestAnimationFrame(() => bootScreen.classList.add("is-exiting"));
-  }, 1800);
-});
+  if (bootScreen) window.setTimeout(() => bootScreen.classList.add("is-exiting"), reduceMotion ? 0 : 850);
+}
+const firstBackdrop = heroBackdrops[0];
+if (firstBackdrop?.complete) finishBoot();
+else {
+  firstBackdrop?.addEventListener("load", finishBoot, {once:true});
+  firstBackdrop?.addEventListener("error", finishBoot, {once:true});
+}
+window.setTimeout(finishBoot, 2400);

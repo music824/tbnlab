@@ -8,29 +8,6 @@
       name="description"
       content="金会杰，TBN 实验室创始人。以项目判断、品牌产品研发与现场运营，助力实体娱乐项目提高成功率。"
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="TBN 实验室" />
-    <meta property="og:title" content="TBN 实验室创始人金会杰介绍" />
-    <meta
-      property="og:description"
-      content="金会杰，TBN 实验室创始人。以项目判断、品牌产品研发与现场运营，助力实体娱乐项目提高成功率。"
-    />
-    <meta
-      property="og:image"
-      content="https://music824.github.io/tbnlab/founder/assets/social-jin-huijie-square.jpg"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1200" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TBN 实验室创始人金会杰介绍" />
-    <meta
-      name="twitter:description"
-      content="金会杰，TBN 实验室创始人。以项目判断、品牌产品研发与现场运营，助力实体娱乐项目提高成功率。"
-    />
-    <meta
-      name="twitter:image"
-      content="https://music824.github.io/tbnlab/founder/assets/social-jin-huijie-square.jpg"
-    />
     <title>TBN 实验室创始人金会杰介绍</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,6 +20,8 @@
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101313'/%3E%3Cpath d='M12 18h40v8H36v28h-8V26H12z' fill='%23d5ff36'/%3E%3C/svg%3E"
     />
+    <link rel="stylesheet" href="../assets/contact.css">
+    <script src="../assets/contact.js" defer></script>
     <style>
       :root {
         --ink: #101313;
@@ -1179,6 +1158,9 @@
         line-height: 1.8;
       }
       .video-dialog {
+        margin: 0;
+        max-width: none;
+        max-height: none;
         position: fixed;
         z-index: 20;
         inset: 0;
@@ -1564,11 +1546,22 @@
         }
       }
     </style>
-  </head>
-  <body>
+
+  <link rel="canonical" href="https://music824.github.io/tbnlab/founder/">
+  <meta property="og:title" content="TBN 实验室创始人金会杰介绍">
+  <meta property="og:description" content="金会杰，TBN 实验室创始人。以项目判断、品牌产品研发与现场运营，助力实体娱乐项目提高成功率。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="TBN实验室 TBN LAB">
+  <meta property="og:url" content="https://music824.github.io/tbnlab/founder/">
+  <meta property="og:image" content="https://music824.github.io/tbnlab/founder/assets/social-jin-huijie-square.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://music824.github.io/tbnlab/founder/#webpage","url":"https://music824.github.io/tbnlab/founder/","name":"TBN 实验室创始人金会杰介绍","description":"金会杰，TBN 实验室创始人。以项目判断、品牌产品研发与现场运营，助力实体娱乐项目提高成功率。","inLanguage":"zh-CN","isPartOf":{"@id":"https://music824.github.io/tbnlab/#website"},"publisher":{"@id":"https://music824.github.io/tbnlab/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TBN实验室","item":"https://music824.github.io/tbnlab/"},{"@type":"ListItem","position":2,"name":"TBN 实验室创始人金会杰介绍","item":"https://music824.github.io/tbnlab/founder/"}]}]}</script>
+</head>
+  <body data-contact-theme="founder">
     <div class="grain" aria-hidden="true"></div>
     <nav class="site-nav" aria-label="页面导航">
-      <a class="brand" href="#top"><b>TBN</b>LAB / 创始人</a
+      <a class="brand" href="../" aria-label="返回TBN官网"><b>TBN</b>LAB / 创始人</a
       ><a class="nav-link" href="#cases"><i></i>代表项目</a>
     </nav>
     <main id="top">
@@ -2230,20 +2223,19 @@
               class="closing-mobile-break"
             />金老师是提高项目成功率的保障。
           </p>
+          <div class="tbn-contact-actions"><a class="tbn-contact-action" href="../contact/" data-contact="wechat">微信洽谈 <span>↗</span></a><a class="tbn-contact-action" href="../contact/?channel=douyin" data-contact="douyin">官方作品集 <span>↗</span></a></div>
         </div>
       </section>
     </main>
     <footer class="footer">
       <strong>TBN LAB</strong>
-      <p>项目咨询 / 项目指导 / 夜经济产品研发 / 行业培训</p>
+      <p>项目咨询 / 项目指导 / 夜经济产品研发 / 行业培训</p><a href="../">返回 TBN 官网 ↗</a>
     </footer>
-    <div
+    <dialog
       id="oscar-video"
       class="video-dialog"
       data-project-video-dialog
       aria-label="项目视频播放"
-      aria-modal="true"
-      role="dialog"
       hidden
     >
       <button
@@ -2265,11 +2257,10 @@
       <iframe
         title="项目视频播放器"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        allowfullscreen
         data-project-embed-element
         hidden
       ></iframe>
-    </div>
+    </dialog>
     <script>
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
       const observer =
@@ -2436,6 +2427,7 @@
       );
       const oscarVideoSource = "assets/video/dr-oscar-brand.mp4";
       const closeVideoDialog = () => {
+        videoDialog.close();
         videoDialog.hidden = true;
         document.body.style.removeProperty("overflow");
         projectVideo.pause();
@@ -2459,6 +2451,7 @@
           projectVideo.setAttribute("aria-label", button.dataset.projectTitle);
         }
         videoDialog.hidden = false;
+        videoDialog.showModal();
         document.body.style.overflow = "hidden";
         if (!isEmbed) projectVideo.play().catch(() => {});
       };
@@ -2467,6 +2460,7 @@
       videoDialog.addEventListener("click", (event) => {
         if (event.target === videoDialog) closeVideoDialog();
       });
+      videoDialog.addEventListener("cancel", event => { event.preventDefault(); closeVideoDialog(); });
     </script>
   </body>
 </html>

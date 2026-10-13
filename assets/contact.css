@@ -1,0 +1,27 @@
+.tbn-contact-dialog{--contact-accent:#8aafff;--contact-ink:#080c15;width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:32px;border:1px solid color-mix(in srgb,var(--contact-accent) 28%,#252525);border-radius:18px;color:#f4f3f8;background:var(--contact-ink);box-shadow:0 28px 100px #0008;overflow:auto;font-family:"Noto Sans SC","PingFang SC",sans-serif;opacity:0;transform:translateY(16px);transition:opacity .35s ease,transform .45s cubic-bezier(.18,.82,.22,1)}
+.tbn-contact-dialog[open]{opacity:1;transform:none}
+body[data-contact-theme="club"] .tbn-contact-dialog{--contact-accent:#ff4d00;--contact-ink:#11110f;border-radius:3px}
+body[data-contact-theme="founder"] .tbn-contact-dialog{--contact-accent:#d5ff36;--contact-ink:#101313;border-radius:6px}
+.tbn-contact-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(8px)}
+.tbn-contact-dialog *{box-sizing:border-box}
+.tbn-contact-close{position:absolute;top:12px;right:12px;display:grid;width:40px;height:40px;place-items:center;border:1px solid #ffffff25;border-radius:50%;color:inherit;background:transparent;cursor:pointer;font:400 24px/1 sans-serif}
+.tbn-contact-close:focus-visible,.tbn-contact-tabs button:focus-visible{outline:2px solid var(--contact-accent);outline-offset:4px}
+.tbn-contact-kicker{margin:3px 44px 17px 0;color:var(--contact-accent);font:500 10px/1.5 monospace;letter-spacing:.18em}
+.tbn-contact-title{margin:0 24px 10px 0;color:inherit;font:700 clamp(23px,5.8vw,30px)/1.35 "Noto Sans SC","PingFang SC",sans-serif;letter-spacing:-.035em}
+.tbn-contact-intro{min-height:22px;margin:0 0 24px;color:#ffffff8c;font:400 12px/1.8 "Noto Sans SC","PingFang SC",sans-serif}
+.tbn-contact-tabs{display:flex;gap:5px;margin:0 0 22px;padding:4px;border:1px solid #ffffff1c;border-radius:8px;background:#ffffff04}
+.tbn-contact-tabs button{flex:1;min-height:40px;padding:8px 3px;border:0;border-radius:5px;color:#ffffff80;background:transparent;cursor:pointer;font:500 11px/1.4 "Noto Sans SC","PingFang SC",sans-serif;transition:color .25s,background .25s}
+.tbn-contact-tabs button[aria-selected="true"]{color:var(--contact-ink);background:var(--contact-accent)}
+.tbn-contact-code{display:block;margin:0}
+.tbn-qr-frame{position:relative;width:min(100%,264px);aspect-ratio:1;margin:0 auto;overflow:hidden;background:#fff;border:12px solid #fff;border-radius:9px;isolation:isolate}
+.tbn-qr-frame img{position:absolute;display:block;width:100%;height:auto;max-width:none;left:0;top:0}
+.tbn-qr-frame[data-channel="douyin"] img{width:146.214%;left:-23.497%;top:-28.842%}
+.tbn-qr-frame[data-channel="channels"] img{width:137.647%;left:-18.824%;top:-47.059%}
+.tbn-contact-note{margin:18px 0 0;text-align:center;color:#ffffff91;font:400 12px/1.8 "Noto Sans SC","PingFang SC",sans-serif}
+.tbn-contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.tbn-contact-action{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:48px;padding:13px 20px;border:1px solid currentColor;color:inherit;background:transparent;text-decoration:none;cursor:pointer;font:600 13px/1.5 "Noto Sans SC","PingFang SC",sans-serif;transition:background .3s,color .3s}
+.tbn-contact-action:hover{color:#101313;background:#d5ff36}
+.tbn-contact-action:focus-visible{outline:2px solid currentColor;outline-offset:5px}
+@starting-style{.tbn-contact-dialog[open]{opacity:0;transform:translateY(16px)}}
+@media(max-width:480px){.tbn-contact-dialog{padding:30px 22px 25px}.tbn-contact-tabs{gap:2px}.tbn-contact-title{font-size:25px}.tbn-contact-actions{gap:10px}.tbn-contact-action{padding:12px 16px;gap:20px}}
+@media(prefers-reduced-motion:reduce){.tbn-contact-dialog,.tbn-contact-tabs button,.tbn-contact-action{transition:none}}
