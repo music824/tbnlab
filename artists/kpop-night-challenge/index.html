@@ -7,7 +7,7 @@
   <meta name="description" content="2026 KPOP踢馆全国巡演合作计划——女团嘉宾、随机舞蹈、粉丝联动与全域流量矩阵。">
   <link rel="canonical" href="https://music824.github.io/tbnlab/artists/kpop-night-challenge/">
   <title>2026 KPOP踢馆｜全国巡演合作计划</title>
-  <link rel="stylesheet" href="styles.css?v=20261014-kpop-rail">
+  <link rel="stylesheet" href="styles.css?v=20261014-kpop-poster-loop">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -40,13 +40,6 @@
             <a class="btn btn-ghost" href="#inquiry">获取巡演方案</a>
           </div>
         </div>
-        <aside class="hero-signal reveal" aria-label="巡演年度信息">
-          <div class="hero-signal-cross">+</div>
-          <span>巡演年度 / TOUR YEAR</span>
-          <strong>2026</strong>
-          <p>NATIONAL<br>TOUR</p>
-          <small>文化破圈 · 城市联动<br>CULTURE BREAKTHROUGH</small>
-        </aside>
       </div>
       <div class="hero-bottom reveal">
         <div class="hero-tourline"><i></i><span>女团嘉宾</span><i></i><span>粉丝联动</span><i></i><span>互动演出</span><i></i><span>流量矩阵</span></div>
@@ -109,9 +102,10 @@
         <button class="gallery-item reveal" data-full="assets/image59.jpeg"><img src="assets/image59.jpeg" alt="KPOP活动互动现场"></button>
         <button class="gallery-item reveal" data-full="assets/image60.jpeg"><img src="assets/image60.jpeg" alt="KPOP舞台表演现场"></button>
       </div>
-      <div class="poster-strip reveal" aria-label="往期活动海报">
+      <div class="poster-strip reveal" role="region" tabindex="0" aria-label="往期活动海报，自动循环，移入或聚焦暂停，可左右滑动浏览">
         <img src="assets/image61.jpeg" alt="往期KPOP活动海报"><img src="assets/image62.jpg" alt="往期KPOP活动海报"><img src="assets/image63.jpg" alt="往期KPOP活动海报"><img src="assets/image64.png" alt="往期KPOP活动海报"><img src="assets/image65.png" alt="往期KPOP活动海报"><img src="assets/image66.png" alt="往期KPOP活动海报"><img src="assets/image67.png" alt="往期KPOP活动海报"><img src="assets/image68.jpg" alt="往期KPOP活动海报"><img src="assets/image69.jpg" alt="往期KPOP活动海报">
       </div>
+      <p class="poster-scroll-hint">自动循环 · 移入暂停 · 左右滑动查看 ↔</p>
     </section>
 
     <section class="artists section" id="artists">
@@ -151,7 +145,7 @@
       <div class="section-index">COOPERATION MODEL</div>
       <div class="section-heading reveal"><p class="kicker">合作模式</p><h2>从意向到落地，<br><em>四步完成一场巡演。</em></h2></div>
       <ol class="process">
-        <li class="reveal"><span>01</span><div><small>INFORMATION</small><h3>信息收集</h3><p>巡演门店所在城市<br>舞台面积数据<br>抖音官媒数据</p><small class="en-caption">CITY · STAGE · SOCIAL DATA</small></div></li>
+        <li class="reveal"><span>01</span><div><small>INFORMATION</small><h3>信息收集</h3><p>巡演门店所在城市<br>舞台面积数据<br>联系人与联系方式</p><small class="en-caption">CITY · STAGE · CONTACT</small></div></li>
         <li class="reveal"><span>02</span><div><small>CUSTOM PLAN</small><h3>方案定制</h3><p>定制报价方案<br>派对排期反馈</p><small class="en-caption">QUOTATION · TOUR SCHEDULE</small></div></li>
         <li class="reveal"><span>03</span><div><small>CONFIRMATION</small><h3>签约确认</h3><p>夜店确认方案<br>签订合作合同</p><small class="en-caption">PLAN APPROVAL · CONTRACT</small></div></li>
         <li class="reveal"><span>04</span><div><small>EXECUTION</small><h3>落地执行</h3><p>共同宣发推广<br>派对落地执行</p><small class="en-caption">CAMPAIGN · LIVE EXECUTION</small></div></li>
@@ -161,14 +155,13 @@
 
     <section class="inquiry section" id="inquiry">
       <div class="inquiry-backdrop"></div>
-      <div class="inquiry-copy reveal"><p class="kicker">START A COLLABORATION</p><h2>让下一座城市，<br><em>为 KPOP 沸腾。</em></h2><p>填写三项基础信息，生成一份可直接发送给合作团队的需求摘要。<small class="en-caption">SHARE THREE ESSENTIAL DETAILS TO CREATE A READY-TO-SEND COLLABORATION BRIEF.</small></p></div>
-      <form class="inquiry-form reveal" id="inquiryForm">
-        <label>巡演城市<input name="city" required placeholder="例如：杭州"></label>
-        <label>舞台面积<input name="stage" required placeholder="例如：80㎡"></label>
-        <label>抖音官媒数据<input name="douyin" required placeholder="例如：粉丝数 / 月播放量"></label>
-        <button class="btn btn-primary" type="submit">复制合作需求 ↗</button>
-        <p class="form-status" role="status" aria-live="polite"></p>
-      </form>
+      <div class="inquiry-copy reveal"><p class="kicker">START A COLLABORATION</p><h2>让下一座城市，<br><em>为 KPOP 沸腾。</em></h2><p>填写城市、舞台面积与联系方式，向 TBN 团队预约巡演合作。<small class="en-caption">SHARE YOUR CITY, STAGE DETAILS AND CONTACT TO PLAN THE NEXT K-POP NIGHT.</small></p></div>
+      <div class="inquiry-form inquiry-entry reveal">
+        <h3>巡演合作预约</h3>
+        <p>告诉我们场地情况，我们一起确认适合你的巡演方案。</p>
+        <ul class="inquiry-entry__fields"><li>巡演城市</li><li>舞台面积</li><li>联系人</li><li>电话 / 微信</li></ul>
+        <button class="btn btn-primary" type="button" data-inquiry-open>发起合作预约 ↗</button>
+      </div>
     </section>
   </main>
 
@@ -178,7 +171,28 @@
     <a class="kpop-footer__home" href="../../"><span class="kpop-footer__home-text"><small>TBN LAB</small><strong>TBN官网</strong></span><span class="kpop-footer__arrow" aria-hidden="true">↗</span></a>
     <div class="kpop-footer__meta"><span>BY KPOP 商演联盟</span><span>© 2026 K-POP 踢馆</span></div>
   </footer>
+  <dialog class="inquiry-dialog" id="inquiryDialog" aria-labelledby="inquiry-title" aria-describedby="inquiry-intro">
+    <button class="inquiry-dialog__close" type="button" aria-label="关闭巡演预约" data-inquiry-close>×</button>
+    <p class="inquiry-dialog__eyebrow">TBN / K-POP NIGHT CHALLENGE</p>
+    <h2 id="inquiry-title">预约下一站，K-POP 踢馆。</h2>
+    <p class="inquiry-dialog__intro" id="inquiry-intro">填写场地信息与联系方式，向 TBN 团队发送巡演合作预约。</p>
+    <form class="inquiry-booking-form" id="inquiryForm" action="https://formsubmit.co/kpopcn@agent.qq.com" method="POST" aria-describedby="inquiry-privacy inquiryStatus">
+      <input type="hidden" name="_subject" value="TBN · K-POP 踢馆巡演合作预约">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="合作项目" value="K-POP 踢馆巡演">
+      <label class="inquiry-honeypot" aria-hidden="true">请留空<input name="_honey" type="text" tabindex="-1" autocomplete="off"></label>
+      <label>巡演城市（必填）<input name="city" required maxlength="50" autocomplete="address-level2" placeholder="例如：杭州" autofocus></label>
+      <label>舞台面积（㎡，必填）<input name="stage" required maxlength="60" placeholder="例如：80；未确定可填待定"></label>
+      <label class="inquiry-booking-form__full">场地 / 门店（选填）<input name="venue" maxlength="100" autocomplete="organization" placeholder="请填写场地或门店名称"></label>
+      <label>联系人（必填）<input name="contactName" required maxlength="50" autocomplete="name" placeholder="请填写你的称呼"></label>
+      <label>电话 / 微信（必填）<input name="contact" required maxlength="80" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="手机号或微信号"></label>
+      <label class="inquiry-booking-form__full">补充需求（选填）<textarea name="notes" rows="2" maxlength="1000" placeholder="意向日期、场地情况、预算范围等"></textarea></label>
+      <p class="inquiry-booking-form__privacy inquiry-booking-form__full" id="inquiry-privacy">点击确定后，信息将通过 FormSubmit 邮件服务发送给 TBN，仅用于本次合作沟通。请保持电话或微信畅通。</p>
+      <button class="btn btn-primary inquiry-booking-form__full" type="submit">确定提交 ↗</button>
+    </form>
+    <p class="inquiry-dialog__status" id="inquiryStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+  </dialog>
   <dialog class="lightbox" id="lightbox"><button aria-label="关闭大图">×</button><img alt="活动现场大图"></dialog>
-  <script src="script.js?v=20260920-kpop-move"></script>
+  <script src="script.js?v=20261014-kpop-poster-loop"></script>
 </body>
 </html>

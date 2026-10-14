@@ -562,3 +562,81 @@ footer.kpop-footer{
   #artists>.artists-head,
   #artists>.rail-controls{width:calc(100% - 36px)}
 }
+
+/* Tour booking: same modal/email workflow as the TBN artist profiles. */
+body.inquiry-open{overflow:hidden}
+.inquiry-entry h3{margin:0 0 12px;font-size:28px;color:#f5f7ff}
+.inquiry-entry>p{margin:0;color:#8fa0bc;font-size:13px;line-height:1.8}
+.inquiry-entry__fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;padding:22px 0;list-style:none;border-block:1px solid #183463;color:#c5d4ed;font-size:12px}
+.inquiry-entry__fields li::before{content:"+";color:#ff2785;margin-right:9px}
+.inquiry-entry .btn{width:100%;margin-top:8px}
+.inquiry-dialog{width:min(640px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:38px;border:1px solid #285da7;border-radius:24px;background:#070b15;color:#f5f7ff;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 28px 100px #0009;color-scheme:dark}
+.inquiry-dialog::backdrop{background:#02040dd9;backdrop-filter:blur(10px)}
+.inquiry-dialog__close{position:absolute;top:10px;right:12px;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:#f5f7ff;font-size:28px;cursor:pointer}
+.inquiry-dialog__eyebrow{margin:4px 0 18px;color:#53a2ff;font-size:9px;letter-spacing:.2em}
+.inquiry-dialog h2{margin:0 32px 12px 0;font-size:clamp(28px,4vw,38px);line-height:1.3;letter-spacing:-.035em}
+.inquiry-dialog__intro{margin:0 0 26px;color:#92a1bc;font-size:12px;line-height:1.8}
+.inquiry-booking-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.inquiry-booking-form label{display:block;color:#a9b9d3;font-size:12px}
+.inquiry-booking-form input,.inquiry-booking-form textarea{display:block;width:100%;min-width:0;min-height:46px;margin-top:8px;padding:12px 13px;border:1px solid #2a3d60;border-radius:10px;background:#0c1424;color:#fff;font:inherit;font-size:16px;outline:none}
+.inquiry-booking-form input:focus,.inquiry-booking-form textarea:focus{border-color:#398cff;box-shadow:0 0 0 2px #398cff26}
+.inquiry-booking-form textarea{resize:vertical;line-height:1.6}
+.inquiry-booking-form__full{grid-column:1/-1}
+.inquiry-booking-form .inquiry-honeypot{display:none}
+.inquiry-booking-form__privacy{margin:0;color:#71829e;font-size:10px;line-height:1.8}
+.inquiry-booking-form .btn{width:100%;margin:0;border:0;border-radius:28px;background:linear-gradient(105deg,#ff1462,#d100ec);box-shadow:none}
+.inquiry-booking-form .btn:disabled{opacity:.55;cursor:default;transform:none}
+.inquiry-dialog__status{min-height:20px;margin:18px 0 0;color:#9bb0d2;font-size:12px;line-height:1.7}
+.inquiry-dialog__status[data-state=success]{color:#65dca2}
+.inquiry-dialog__status[data-state=error],.inquiry-dialog__status[data-state=activation]{color:#ffb0b8}
+.inquiry-dialog button:focus-visible{outline:2px solid #7ab3ff;outline-offset:4px}
+@media(max-width:560px){
+  .inquiry-dialog{padding:32px 20px 24px;border-radius:20px}
+  .inquiry-booking-form{grid-template-columns:minmax(0,1fr);gap:16px}
+  .inquiry-booking-form__full{grid-column:auto}
+}
+
+/* Open up the hero wordmark without changing its font or size. */
+.hero h1 .hero-kpop{letter-spacing:.015em;text-indent:.015em}
+
+/* Tablet cases: one lead image, three equal photo frames, one full-width image. */
+@media(min-width:561px) and (max-width:900px){
+  #cases .gallery{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto;align-items:start}
+  #cases .gallery-item{grid-column:auto;grid-row:auto;min-width:0;height:auto;align-self:start}
+  #cases .gallery-item.wide{grid-column:1/-1;height:clamp(220px,34vw,300px)}
+  #cases .gallery-item:last-child{grid-column:1/-1}
+  #cases .gallery img{width:100%;height:auto;object-fit:contain}
+  #cases .gallery-item:nth-child(n+2):nth-child(-n+4){aspect-ratio:3/2}
+  #cases .gallery-item:nth-child(n+2):nth-child(-n+4) img{height:100%;object-fit:cover;object-position:50% 20%}
+  #cases .gallery-item.wide img{height:100%;object-fit:cover;object-position:50% 15%}
+}
+
+/* All viewport widths share one equal-height, uncropped, seamless poster rail. */
+#cases .poster-strip{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:14px;
+  scroll-behavior:auto;
+  scroll-snap-type:none;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#398cff #091124;
+}
+#cases .poster-strip img,
+#cases .poster-strip img:nth-child(even){
+  flex:0 0 auto;
+  width:auto;
+  height:clamp(220px,36vw,300px);
+  max-width:none;
+  aspect-ratio:auto;
+  object-fit:contain;
+  transform:none;
+  margin:0;
+  border:0;
+  border-radius:12px;
+}
+#cases .poster-strip:focus-visible{outline:2px solid #72acff;outline-offset:4px}
+.poster-scroll-hint{display:block;margin:12px 0 0;text-align:right;color:#8fa0bc;font-size:10px;letter-spacing:.08em}
